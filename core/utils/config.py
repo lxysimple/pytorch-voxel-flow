@@ -42,8 +42,7 @@ class Config(object):
         else:
             raise IOError('only py type are supported as config files')
         
-        print("config_dict",config_dict)
-        print("filename",filename)
+
         return Config(config_dict, filename=filename)
 
     @staticmethod
@@ -53,7 +52,8 @@ class Config(object):
         cfg_file = partial_parser.parse_known_args()[0].config
         cfg = Config.from_py(cfg_file)
         parser = ArgumentParser(description=description)
-        parser.add_argument('config', help='config file path')
+        # parser.add_argument('config', help='config file path')
+        parser.add_argument('./config', help='config file path')
         add_args(parser, cfg)
         return parser, cfg
 
