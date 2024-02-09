@@ -42,8 +42,14 @@ def main():
     # cudnn.fastest = True
 
     # 检测配置文件中是否定义了dataset路径
-    if hasattr(datasets, cfg.dataset):
-        ds = getattr(datasets, cfg.dataset)
+    # if hasattr(datasets, cfg.dataset):
+    #     ds = getattr(datasets, cfg.dataset)
+    # else:
+    #     raise ValueError('Unknown dataset ' + cfg.dataset)
+    
+    # return 
+    if cfg.dataset is not None:
+        ds = cfg.dataset
     else:
         raise ValueError('Unknown dataset ' + cfg.dataset)
     
