@@ -61,8 +61,10 @@ def main():
     # model = getattr(models, cfg.model.name)(cfg.model).cuda()
 
     model = globals()[cfg.model.name](cfg.model)
+    ds_train = globals()[ds](cfg.train)
 
-    print("model:",model)
+    print("model: ",model)
+    print("ds_train: ",ds_train)
 
     cfg.train.input_mean = model.input_mean
     cfg.train.input_std = model.input_std
@@ -71,7 +73,8 @@ def main():
 
     # Data loading code
     train_loader = torch.utils.data.DataLoader(
-        ds(cfg.train),
+        # ds(cfg.train),
+        ds_train,
         batch_size=cfg.train.batch_size,
         shuffle=True,
         num_workers=32,
