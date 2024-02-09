@@ -6,7 +6,7 @@ import shutil
 import numpy as np
 import torch.backends.cudnn as cudnn
 # from core import models
-from core import datasets
+# from core import datasets
 # from core.utils.optim import Optim
 from core.utils.config import Config
 # from core.utils.eval import EvalPSNR
@@ -46,19 +46,19 @@ def main():
     #     ds = getattr(datasets, cfg.dataset)
     # else:
     #     raise ValueError('Unknown dataset ' + cfg.dataset)
-    
-    # return 
+
     if cfg.dataset is not None:
         ds = cfg.dataset
     else:
         raise ValueError('Unknown dataset ' + cfg.dataset)
     
-    print(ds)
-    return 
-
-    # model = getattr(models, cfg.model.name)(cfg.model).cuda()
     # 根据配置中的模型名称创建一个模型对象
-    model = getattr(models, cfg.model.name)(cfg.model).cuda()
+    # model = getattr(models, cfg.model.name)(cfg.model).cuda()
+
+    my_class = globals().get(cfg.model.name)
+    model = my_class(cfg.model)
+
+    print("model:",model)
 
     cfg.train.input_mean = model.input_mean
     cfg.train.input_std = model.input_std
