@@ -14,7 +14,7 @@ from core.utils.config import Config
 
 import sys
 sys.path.append('core/models')
-from voxel_flow import VoxelFlow
+from voxel_flow_my import VoxelFlow
 
 
 best_PSNR = 0
