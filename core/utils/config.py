@@ -32,7 +32,7 @@ class Config(object):
             sys.path.append(osp.dirname(filename))
             # module_name = osp.basename(filename).rstrip('.py')
             module_name = osp.basename(filename).rstrip('_my.py')
-            print("module_name",module_name)
+            
             cfg = import_module(module_name)
             config_dict = edict({
                 name: value
@@ -41,6 +41,9 @@ class Config(object):
             })
         else:
             raise IOError('only py type are supported as config files')
+        
+        print("config_dict",config_dict)
+        print("filename",filename)
         return Config(config_dict, filename=filename)
 
     @staticmethod
