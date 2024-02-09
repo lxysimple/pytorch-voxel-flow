@@ -12,6 +12,11 @@ from core.utils.config import Config
 # from core.utils.eval import EvalPSNR
 # from core.ops.sync_bn import DataParallelwithSyncBN
 
+import sys
+sys.path.append('core/models')
+from voxel_flow import VoxelFlow
+
+
 best_PSNR = 0
 
 
