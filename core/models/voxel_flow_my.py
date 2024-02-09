@@ -3,7 +3,7 @@ from torch import nn
 # from core.ops.sync_bn import convert_bn
 # from core.ops.sync_bn import SyncBatchNorm2d as BatchNorm2d
 
-from nn.BatchNorm2d as BatchNorm2d
+import torch.nn.BatchNorm2d as BatchNorm2d
 
 def meshgrid(height, width):
     x_t = torch.matmul(
