@@ -28,10 +28,10 @@ def add_args(parser, cfg, prefix=''):
 class Config(object):
     @staticmethod
     def from_file(filename):
-        if filename.endswith('.py'):
+        if filename.endswith('.py'): # filename: configs/voxel-flow_my.py
             sys.path.append(osp.dirname(filename))
             # module_name = osp.basename(filename).rstrip('.py')
-            module_name = osp.basename(filename).rstrip('_my.py')
+            module_name = osp.basename(filename).rstrip('_my.py') # module_name: voxel-flow
             
             cfg = import_module(module_name)
             config_dict = edict({
@@ -52,8 +52,7 @@ class Config(object):
         cfg_file = partial_parser.parse_known_args()[0].config
         cfg = Config.from_py(cfg_file)
         parser = ArgumentParser(description=description)
-        # parser.add_argument('config', help='config file path')
-        parser.add_argument('./config', help='config file path')
+        parser.add_argument('config', help='config file path')
         add_args(parser, cfg)
         return parser, cfg
 
