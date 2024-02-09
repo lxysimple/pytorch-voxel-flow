@@ -53,6 +53,7 @@ def main():
     else:
         raise ValueError('Unknown dataset ' + cfg.dataset)
     
+    print(ds)
     return 
 
     # model = getattr(models, cfg.model.name)(cfg.model).cuda()
