@@ -55,8 +55,7 @@ def main():
     # 根据配置中的模型名称创建一个模型对象
     # model = getattr(models, cfg.model.name)(cfg.model).cuda()
 
-    my_class = globals().get(cfg.model.name)
-    model = my_class(cfg.model)
+    model = globals()[cfg.model.name](cfg.model)
 
     print("model:",model)
 
