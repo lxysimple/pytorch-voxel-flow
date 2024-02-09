@@ -16,9 +16,14 @@ best_PSNR = 0
 
 
 def parse_args():
-    """ 解析用户输入的config文件,即voxel-flow_my.py """
+    """ 
+    解析用户输入的config文件,即voxel-flow_my.py 
+    
+    return: (config='configs/voxel-flow_my.py')
+    """
 
     parser = argparse.ArgumentParser(description='Train Voxel Flow')
+    
     parser.add_argument('config', help='config file path')
     args = parser.parse_args()
     return args
@@ -27,7 +32,7 @@ def parse_args():
 def main():
     global cfg, best_PSNR
     args = parse_args()
-    print(args)
+
     cfg = Config.from_file(args.config)
 
     print(cfg)
