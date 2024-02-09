@@ -42,7 +42,6 @@ class Config(object):
         else:
             raise IOError('only py type are supported as config files')
         
-
         return Config(config_dict, filename=filename)
 
     @staticmethod
