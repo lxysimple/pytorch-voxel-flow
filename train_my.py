@@ -135,7 +135,7 @@ def train(train_loader, model, optimizer, criterion, epoch):
         lr = optimizer.adjust_learning_rate(epoch * len(train_loader) + i,
                                             epoch)
 
-        target = target.cuda(async=True)
+        # target = target.cuda(async=True)
         input_var = torch.autograd.Variable(input).cuda()
         target_var = torch.autograd.Variable(target).cuda()
 
@@ -195,7 +195,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
 
         end = time.time()
         for i, (input, target) in enumerate(val_loader):
-            target = target.cuda(async=True)
+            # target = target.cuda(async=True)
             input_var = torch.autograd.Variable(input)
             target_var = torch.autograd.Variable(target)
 
