@@ -39,8 +39,13 @@ def main():
         ds = getattr(datasets, cfg.dataset)
     else:
         raise ValueError('Unknown dataset ' + cfg.dataset)
+    
+    return 
 
+    # model = getattr(models, cfg.model.name)(cfg.model).cuda()
+    # 根据配置中的模型名称创建一个模型对象
     model = getattr(models, cfg.model.name)(cfg.model).cuda()
+
     cfg.train.input_mean = model.input_mean
     cfg.train.input_std = model.input_std
     cfg.test.input_mean = model.input_mean
