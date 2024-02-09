@@ -1,10 +1,12 @@
+"""
+从命令行中获取信息，文件加载，方便动态更新配置
+"""
 import os.path as osp
 import sys
 from argparse import ArgumentParser
 from collections import Iterable
 from importlib import import_module
 from easydict import EasyDict as edict
-
 
 def add_args(parser, cfg, prefix=''):
     for k, v in cfg.items():
