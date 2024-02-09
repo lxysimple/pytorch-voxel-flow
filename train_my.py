@@ -16,7 +16,7 @@ import sys
 sys.path.append('core/models')
 from voxel_flow_my import VoxelFlow
 sys.path.append('core/datasets')
-from ucf_101 import UCF101
+from ucf_101_my import UCF101
 
 
 best_PSNR = 0
