@@ -27,7 +27,9 @@ def parse_args():
 def main():
     global cfg, best_PSNR
     args = parse_args()
+    print(args)
     cfg = Config.from_file(args.config)
+
     print(cfg)
 
     # os.environ["CUDA_VISIBLE_DEVICES"] = ','.join(
