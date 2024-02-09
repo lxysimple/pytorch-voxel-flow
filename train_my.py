@@ -8,7 +8,7 @@ import torch.backends.cudnn as cudnn
 # from core import models
 # from core import datasets
 # from core.utils.optim import Optim
-# from core.utils.config import Config
+from core.utils.config import Config
 # from core.utils.eval import EvalPSNR
 # from core.ops.sync_bn import DataParallelwithSyncBN
 
