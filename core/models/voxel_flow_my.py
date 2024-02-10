@@ -185,7 +185,7 @@ class VoxelFlow(nn.Module):
         x = nn.functional.tanh(x)
 
         flow = x[:, 0:2, :, :] 
-        mask = x[:, 2:3, :, :] 
+        mask = x[:, 2:3, :, :] # 应该是第1帧+光流预测图所占权重
 
         # grid_x：表示每个像素在 x 轴上的坐标值，从左到右依次递增。
         # grid_y：表示每个像素在 y 轴上的坐标值，从上到下依次递增。
