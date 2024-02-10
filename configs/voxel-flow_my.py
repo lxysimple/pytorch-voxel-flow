@@ -44,6 +44,7 @@ train = dict(
 test = dict(
     batch_size=64,
     # data_list='test_motion',
+
     data_list='train_motion',
     step=3,
     # syn_type=model['syn_type'],
