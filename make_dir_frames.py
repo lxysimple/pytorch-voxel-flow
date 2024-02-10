@@ -2,7 +2,7 @@ import os
 
 # 获取当前目录
 # current_dir = os.getcwd()
-current_dir = '/home/xyli/pytorch-voxel-flow/data/ucf-101/rawframes'
+current_dir = '/home/xyli/pytorch-voxel-flow/data/ucf-101/rawframes/'
 
 # 获取当前目录下所有子目录
 subdirectories = [d for d in os.listdir(current_dir) if os.path.isdir(d)]
