@@ -125,8 +125,9 @@ def main():
  
 
 
-    model = DataParallelwithSyncBN(
-        model, device_ids=range(len(cfg.device))).cuda()
+    # model = DataParallelwithSyncBN(
+    #     model, device_ids=range(len(cfg.device))).cuda()
+    model = model.cuda()
 
     # define loss function (criterion) optimizer and evaluator
     criterion = torch.nn.MSELoss().cuda()
