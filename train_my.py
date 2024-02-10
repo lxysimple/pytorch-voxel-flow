@@ -64,9 +64,11 @@ def main():
 
     model = globals()[cfg.model.name](cfg.model)
     ds_train = globals()[ds](cfg.train)
+    ds_val = globals()[ds](cfg.test)
 
     print("model: ",model)
     print("ds_train: ",ds_train)
+    print("ds_val: ",ds_val)
 
     cfg.train.input_mean = model.input_mean
     cfg.train.input_std = model.input_std
@@ -84,7 +86,8 @@ def main():
         drop_last=True)
 
     val_loader = torch.utils.data.DataLoader(
-        datasets.UCF101(cfg.test, False),
+        # datasets.UCF101(cfg.test, False),
+        ds_val,
         batch_size=cfg.test.batch_size,
         shuffle=False,
         num_workers=32,
