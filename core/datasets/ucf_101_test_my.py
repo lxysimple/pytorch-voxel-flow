@@ -50,7 +50,7 @@ class UCF101Test(Dataset):
             images[i] = torch.from_numpy(images[i]).permute(
                 2, 0, 1).contiguous().float()
 
-        mask = torch.from_numpy(mask).contiguous().long()
+        # mask = torch.from_numpy(mask).contiguous().long()
 
         if not hasmask:
             if self.config.syn_type == 'inter':
