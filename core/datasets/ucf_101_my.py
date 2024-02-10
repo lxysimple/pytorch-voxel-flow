@@ -50,7 +50,7 @@ class UCF101(Dataset):
             
             img = cv2.imread(
                 os.path.join(self.img_path, video_dir,
-                             '{0:06d}.jpg'.format(frame_idx + i))).astype(
+                             'img_{0:06d}.jpg'.format(frame_idx + i))).astype(
                                  np.float32)
             images.append(img)
 
