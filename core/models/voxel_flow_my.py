@@ -128,58 +128,67 @@ class VoxelFlow(nn.Module):
         input = x
         input_size = tuple(x.size()[2:4])
 
-        x = self.conv1(x)
+        # out =(input +2*padding -kernel)/stride + 1 
+        # (256+2*2-5)/1 + 1 = 256
+        x = self.conv1(x) # (b, 2*3, 256, 256) -> (b, 64, 256, 256)
         x = self.conv1_bn(x)
         conv1 = self.relu(x)
+        # (256 + 0 - 2)/2 +1 = 128
+        x = self.pool(conv1) # (b, 64, 256, 256) -> (b, 64, 128, 128)
 
-        x = self.pool(conv1)
-
-        x = self.conv2(x)
+        # (128+2*2-5)/1+1=128
+        x = self.conv2(x) # (b, 64,...) -> (b, 128,...)
         x = self.conv2_bn(x)
         conv2 = self.relu(x)
+        # (128 + 0 - 2)/2 +1 = 64
+        x = self.pool(conv2) # (b, 64, 128, 128) -> (b, 128, 64, 64) 
 
-        x = self.pool(conv2)
-
-        x = self.conv3(x)
+        # (64+1*2-3)/1+1=64
+        x = self.conv3(x) # ->(b, 256, 64, 64)
         x = self.conv3_bn(x)
-        conv3 = self.relu(x)
+        conv3 = self.relu(x) 
 
-        x = self.pool(conv3)
+        x = self.pool(conv3) # ->(b, 256, 32, 32)
 
-        x = self.bottleneck(x)
+        x = self.bottleneck(x) # ->(b, 256, 32, 32)
         x = self.bottleneck_bn(x)
         x = self.relu(x)
 
-        x = nn.functional.upsample(
+        x = nn.functional.upsample( # ->(b, 256, 64, 64)
             x, scale_factor=2, mode='bilinear', align_corners=False)
 
-        x = torch.cat([x, conv3], dim=1)
-        x = self.deconv1(x)
+        # out=(input - 1)×stride+k-2p
+        # (64-1)*1+3-2=64
+        x = torch.cat([x, conv3], dim=1) # ->(b, 512, 64, 64)
+        x = self.deconv1(x) # ->(b, 256, 64, 64)
         x = self.deconv1_bn(x)
         x = self.relu(x)
 
-        x = nn.functional.upsample(
+        x = nn.functional.upsample( # ->(b, 256, 128, 128)
             x, scale_factor=2, mode='bilinear', align_corners=False)
 
-        x = torch.cat([x, conv2], dim=1)
-        x = self.deconv2(x)
+        x = torch.cat([x, conv2], dim=1) # ->(b, 384, 128, 128)
+        #(128-1)*1+5-2*2=128
+        x = self.deconv2(x) # ->(b, 128, 128, 128)
         x = self.deconv2_bn(x)
         x = self.relu(x)
 
-        x = nn.functional.upsample(
+        x = nn.functional.upsample( # ->(b, 128, 256, 256)
             x, scale_factor=2, mode='bilinear', align_corners=False)
 
-        x = torch.cat([x, conv1], dim=1)
-        x = self.deconv3(x)
+        x = torch.cat([x, conv1], dim=1) # ->(b, 192, 256, 256)
+        x = self.deconv3(x) # ->(b, 64, 256, 256)
         x = self.deconv3_bn(x)
         x = self.relu(x)
 
-        x = self.conv4(x)
+        x = self.conv4(x) # ->(b, 3, 256, 256)
         x = nn.functional.tanh(x)
 
-        flow = x[:, 0:2, :, :]
-        mask = x[:, 2:3, :, :]
+        flow = x[:, 0:2, :, :] 
+        mask = x[:, 2:3, :, :] 
 
+        # grid_x：表示每个像素在 x 轴上的坐标值，从左到右依次递增。
+        # grid_y：表示每个像素在 y 轴上的坐标值，从上到下依次递增。
         grid_x, grid_y = meshgrid(input_size[0], input_size[1])
         with torch.cuda.device(input.get_device()):
             grid_x = torch.autograd.Variable(
