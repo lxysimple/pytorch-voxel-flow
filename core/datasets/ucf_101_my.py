@@ -34,7 +34,9 @@ class UCF101(Dataset):
 
         video_dir = self.img_list[idx][0]
         frames_num = self.img_list[idx][1]
-        frame_idx = random.randint(4, frames_num - 4)
+        # frame_idx = random.randint(4, frames_num - 4)
+
+        frame_idx = 1 # 每个视频只取前2、3、4帧做训练样本
         if not self.istrain:
             frame_idx = frames_num // 2
 
