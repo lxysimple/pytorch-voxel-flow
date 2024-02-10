@@ -32,9 +32,9 @@ class Config(object):
     def from_file(filename):
         if filename.endswith('.py'): # filename: configs/voxel-flow_my.py
             sys.path.append(osp.dirname(filename))
-            module_name = osp.basename(filename).rstrip('.py')
+            # module_name = osp.basename(filename).rstrip('.py')
             # module_name = osp.basename(filename).rstrip('_my.py') # module_name: voxel-flow
-            
+            module_name = osp.basename(filename)[:-3]
             cfg = import_module(module_name)
             config_dict = edict({
                 name: value
