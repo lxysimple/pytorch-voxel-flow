@@ -13,7 +13,8 @@ model = dict(
 device = [0, 1, 2, 3, 4, 5, 6, 7]
 resume = ''
 weight = ''
-dataset = 'UCF101'
+# dataset = 'UCF101'
+dataset = 'ucf-101'
 
 # Training strategry
 train = dict(
