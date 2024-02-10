@@ -76,8 +76,8 @@ class UCF101(Dataset):
                 2, 0, 1).contiguous().float()
 
         if self.config.syn_type == 'inter':
-            return torch.cat([images[0], images[self.config.step - 1]], dim=0),
-                   torch.cat(images[1:self.config.step - 1], dim=0)
+            return torch.cat([images[0], images[self.config.step - 1]], dim=0), torch.cat(images[1:self.config.step - 1], dim=0)
+
         elif self.config.syn_type == 'extra':
             return torch.cat(
                 [images[0], images[1]], dim=0), torch.cat(
