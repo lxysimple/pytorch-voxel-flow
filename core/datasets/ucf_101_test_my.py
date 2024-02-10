@@ -28,7 +28,8 @@ class UCF101Test(Dataset):
     def __getitem__(self, idx, hasmask=False):
 
         images = []
-        for i in range(3):
+        # for i in range(3):
+        for i in range(1,4): # 我生成的帧序号从1开始而不是0
             # img = cv2.imread(
             #     os.path.join(self.img_path, self.img_list[idx],
             #                  'frame_{0:02d}.png'.format(i))).astype(np.float32)
