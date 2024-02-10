@@ -35,7 +35,7 @@ class UCF101Test(Dataset):
 
             img = cv2.imread(
                 os.path.join(self.img_path, self.img_list[idx],
-                             'frame_{0:05d}.jpg'.format(i))).astype(np.float32)
+                             'img_{0:05d}.jpg'.format(i))).astype(np.float32)
             images.append(img)
 
         mask = cv2.imread(
