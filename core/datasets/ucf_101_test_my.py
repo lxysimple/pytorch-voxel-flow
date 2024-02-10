@@ -16,7 +16,7 @@ class UCF101Test(Dataset):
             self.img_list = []
 
             for line in f:
-                self.img_list.append(line.rstrip())
+                self.img_list.append(line.rstrip().split(' ')[0])
         self.img_path = dataset_path
         self.config = config
 
@@ -36,7 +36,7 @@ class UCF101Test(Dataset):
 
             img = cv2.imread(
                 os.path.join(self.img_path, video_dir,
-                             'img_{0:05d}.jpg'.format(i))).astype(np.float32)
+                             'img_{0:05d}.jpg'.format(i))).astype(np.float32)          
             images.append(img)
 
         # mask = cv2.imread(
