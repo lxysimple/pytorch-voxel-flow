@@ -38,11 +38,10 @@ class UCF101Test(Dataset):
                              'img_{0:05d}.jpg'.format(i))).astype(np.float32)
             images.append(img)
 
-        mask = cv2.imread(
-            os.path.join(self.img_path, self.img_list[idx], 'motion_mask.png'),
-            cv2.IMREAD_UNCHANGED)
-
-        mask = (mask.squeeze() > 0).astype(np.uint8)
+        # mask = cv2.imread(
+        #     os.path.join(self.img_path, self.img_list[idx], 'motion_mask.png'),
+        #     cv2.IMREAD_UNCHANGED)
+        # mask = (mask.squeeze() > 0).astype(np.uint8)
 
         # norm
         for i in range(3):
