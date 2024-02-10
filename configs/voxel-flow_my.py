@@ -1,7 +1,7 @@
 # VoxelFlow model
 model = dict(
     name="VoxelFlow",
-    # syn_type="extra",
+    syn_type="extra",
     bn_param=dict(momentum=0.9997),
     bn_training=True,
     bn_parallel=False,
