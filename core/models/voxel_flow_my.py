@@ -74,10 +74,12 @@ class VoxelFlow(nn.Module):
         :return:
         """
         super(VoxelFlow, self).train(mode)
-        if mode:
-            convert_bn(self, self.config.bn_training, self.config.bn_parallel)
-        else:
-            convert_bn(self, False, False)
+
+        # 我感觉目前的版本无需要关心并行的细节了
+        # if mode:
+        #     convert_bn(self, self.config.bn_training, self.config.bn_parallel)
+        # else:
+        #     convert_bn(self, False, False)
 
     def get_optim_policies(self):
         outs = []
