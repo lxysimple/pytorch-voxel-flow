@@ -10,7 +10,8 @@ class UCF101Test(Dataset):
 
     def __init__(self, config):
         super(UCF101Test, self).__init__()
-        dataset_path = 'data/UCF-101_test'
+        # dataset_path = 'data/UCF-101_test'
+        dataset_path = 'data/ucf-101'
         with open(os.path.join(dataset_path, config.data_list + '.txt')) as f:
             self.img_list = []
 
