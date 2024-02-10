@@ -43,9 +43,14 @@ class UCF101(Dataset):
         images = []
 
         for i in range(self.config.step):
+            # img = cv2.imread(
+            #     os.path.join(self.img_path, video_dir,
+            #                  '{0:06d}.png'.format(frame_idx + i))).astype(
+            #                      np.float32)
+            
             img = cv2.imread(
                 os.path.join(self.img_path, video_dir,
-                             '{0:06d}.png'.format(frame_idx + i))).astype(
+                             '{0:06d}.jpg'.format(frame_idx + i))).astype(
                                  np.float32)
             images.append(img)
 
