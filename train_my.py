@@ -98,6 +98,7 @@ def main():
         pin_memory=True)
 
 
+
     cfg.train.optimizer.args.max_iter = (
         cfg.train.optimizer.args.max_epoch * len(train_loader))
 
@@ -119,6 +120,9 @@ def main():
         else:
             print(("=> no checkpoint found at '{}'".format(checkpoint_path)))
  
+    print("ok.")
+    return 
+
     model = DataParallelwithSyncBN(
         model, device_ids=range(len(cfg.device))).cuda()
 
