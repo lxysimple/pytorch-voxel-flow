@@ -7,6 +7,7 @@ current_dir = '/home/xyli/pytorch-voxel-flow/data/ucf-101/rawframes/'
 # 获取当前目录下所有子目录
 subdirectories = [d for d in os.listdir(current_dir) if os.path.isdir(d)]
 
+print(subdirectories)
 # 打开 result.txt 文件
 with open('result.txt', 'w') as f:
     # 遍历每个子目录
