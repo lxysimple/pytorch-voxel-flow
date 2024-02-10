@@ -19,7 +19,8 @@ dataset = 'UCF101'
 # Training strategry
 train = dict(
     syn_type="extra",
-    batch_size=128,
+    # batch_size=128,
+    batch_size=32,
     optimizer=dict(
         algorithm='ADAM',
         args=dict(
