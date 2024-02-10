@@ -28,7 +28,7 @@ current_dir = '/home/xyli/pytorch-voxel-flow/data/ucf-101/rawframes/'
 subdirectories = [d for d in os.listdir(current_dir)]
 
 # 打开 result.txt 文件
-with open('result.txt', 'w') as f:
+with open('train_motion.txt', 'w') as f:
     # 遍历每个一级子目录
     for subdir in subdirectories:
         subdir_path = os.path.join(current_dir, subdir)
