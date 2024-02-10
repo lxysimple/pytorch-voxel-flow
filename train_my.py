@@ -71,7 +71,7 @@ def main():
     # model = getattr(models, cfg.model.name)(cfg.model).cuda()
 
     model = globals()[cfg.model.name](cfg.model)
-    model = DataParallel(model)
+    
     ds_train = globals()['UCF101'](cfg.train)
     ds_val = globals()['UCF101Test'](cfg.test)
     
@@ -132,6 +132,7 @@ def main():
     # model = DataParallelwithSyncBN(
     #     model, device_ids=range(len(cfg.device))).cuda()
     model = model.cuda()
+    model = DataParallel(model) # 开始并行
 
     # define loss function (criterion) optimizer and evaluator
     criterion = torch.nn.MSELoss().cuda()
