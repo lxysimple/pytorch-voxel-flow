@@ -22,6 +22,7 @@ from ucf_101_test_my import UCF101Test
 
 sys.path.append('core/utils')
 from optim import Optim
+from eval import EvalPSNR
 
 
 best_PSNR = 0
