@@ -17,7 +17,7 @@ sys.path.append('core/models')
 from voxel_flow_my import VoxelFlow
 sys.path.append('core/datasets')
 from ucf_101_my import UCF101
-
+from ucf_101_test_my import UCF101Test
 
 best_PSNR = 0
 
@@ -63,8 +63,8 @@ def main():
     # model = getattr(models, cfg.model.name)(cfg.model).cuda()
 
     model = globals()[cfg.model.name](cfg.model)
-    ds_train = globals()[ds](cfg.train)
-    ds_val = globals()[ds](cfg.test)
+    ds_train = globals()['UCF101'](cfg.train)
+    ds_val = globals()['UCF101Test'](cfg.test)
 
     print("model: ",model)
     print("ds_train: ",ds_train)
