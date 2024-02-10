@@ -26,7 +26,7 @@ class UCF101Test(Dataset):
     # def __getitem__(self, idx, hasmask=True):
     # 从训练代码中看到默认是没有mask提供的
     def __getitem__(self, idx, hasmask=False):
-        video_dir = self.img_list[idx][0]
+
         images = []
         # for i in range(3):
         for i in range(1,4): # 我生成的帧序号从1开始而不是0
@@ -35,8 +35,7 @@ class UCF101Test(Dataset):
             #                  'frame_{0:02d}.png'.format(i))).astype(np.float32)
 
             img = cv2.imread(
-                os.path.join(self.img_path, video_dir,
-                             'img_{0:05d}.jpg'.format(i))).astype(np.float32)          
+                os.path.join(self.img_path, self.img_list[idx], 'img_{0:05d}.jpg'.format(i))).astype(np.float32)          
             images.append(img)
 
         # mask = cv2.imread(
