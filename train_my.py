@@ -123,8 +123,7 @@ def main():
         else:
             print(("=> no checkpoint found at '{}'".format(checkpoint_path)))
  
-    print("ok.")
-    return 
+
 
     model = DataParallelwithSyncBN(
         model, device_ids=range(len(cfg.device))).cuda()
@@ -135,6 +134,9 @@ def main():
 
     # PSNR = validate(val_loader, model, optimizer, criterion, evaluator)
     # return
+
+    print("ok.")
+    return 
 
     for epoch in range(cfg.train.optimizer.args.max_epoch):
 
