@@ -40,4 +40,4 @@ with open('train_motion.txt', 'w') as f:
             # 统计当前二级子目录中图片数量
             image_count = sum([len(files) for _, _, files in os.walk(sub_subdir_path) ])
             # 将结果写入 result.txt 文件
-            f.write(f"{sub_subdir_path}\t{image_count}\n")
+            f.write(f"{sub_subdir_path} {image_count}\n")
