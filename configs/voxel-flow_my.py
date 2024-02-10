@@ -16,7 +16,6 @@ weight = ''
 dataset = 'UCF101'
 # dataset = 'ucf-101'
 
-weight = ''
 
 # Training strategry
 train = dict(
