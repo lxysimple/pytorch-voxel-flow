@@ -65,11 +65,13 @@ def main():
     # 根据配置中的模型名称创建一个模型对象
     # model = getattr(models, cfg.model.name)(cfg.model).cuda()
 
+    print('cfg.test', cfg.test)
+    
     model = globals()[cfg.model.name](cfg.model)
     ds_train = globals()['UCF101'](cfg.train)
     ds_val = globals()['UCF101Test'](cfg.test)
 
-    print('cfg.test', cfg.test)
+    
     print("model: ",model)
     print("ds_train: ",ds_train)
     print("ds_val: ",ds_val)
