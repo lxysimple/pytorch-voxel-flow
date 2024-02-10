@@ -90,6 +90,9 @@ def main():
         num_workers=32,
         pin_memory=True)
 
+    print("ok.")
+    return 
+
     cfg.train.optimizer.args.max_iter = (
         cfg.train.optimizer.args.max_epoch * len(train_loader))
 
