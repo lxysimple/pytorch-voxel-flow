@@ -44,6 +44,8 @@ train = dict(
 
 # Testing strategry
 test = dict(
+    syn_type="extra",
+    
     batch_size=64,
     # data_list='test_motion',
 
