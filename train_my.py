@@ -20,6 +20,8 @@ sys.path.append('core/datasets')
 from ucf_101_my import UCF101
 from ucf_101_test_my import UCF101Test
 
+sys.path.append('core/utils')
+from optim import Optim
 
 
 best_PSNR = 0
@@ -107,6 +109,7 @@ def main():
         print(('group: {} has {} params, lr_mult: {}, decay_mult: {}'.format(
             group['name'],
             len(group['params']), group['lr_mult'], group['decay_mult'])))
+        
     optimizer = Optim(policies, cfg.train.optimizer)
 
     if cfg.resume or cfg.weight:
