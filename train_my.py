@@ -110,7 +110,7 @@ def main():
                 optimizer.load_state_dict(checkpoint['grad_dict'])
         else:
             print(("=> no checkpoint found at '{}'".format(checkpoint_path)))
-
+ 
     model = DataParallelwithSyncBN(
         model, device_ids=range(len(cfg.device))).cuda()
 
