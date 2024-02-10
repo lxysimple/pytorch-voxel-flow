@@ -82,6 +82,7 @@ class UCF101(Dataset):
             images[i] = torch.from_numpy(images[i]).permute(
                 2, 0, 1).contiguous().float()
 
+        print('self.config', self.config)
         if self.config.syn_type == 'inter':
             return torch.cat([images[0], images[self.config.step - 1]], dim=0), torch.cat(images[1:self.config.step - 1], dim=0)
 
