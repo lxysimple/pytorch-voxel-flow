@@ -24,6 +24,8 @@ sys.path.append('core/utils')
 from optim import Optim
 from eval import EvalPSNR
 
+# 导入 PyTorch 的 DataParallel 模块
+from torch.nn.parallel import DataParallel # 单机多卡的分布式训练（数据并行） 模型训练加速
 
 best_PSNR = 0
 
@@ -69,9 +71,10 @@ def main():
     # model = getattr(models, cfg.model.name)(cfg.model).cuda()
 
     model = globals()[cfg.model.name](cfg.model)
+    model = DataParallel(model)
     ds_train = globals()['UCF101'](cfg.train)
     ds_val = globals()['UCF101Test'](cfg.test)
-
+    
     
     print("model: ",model)
     print("ds_train: ",ds_train)
