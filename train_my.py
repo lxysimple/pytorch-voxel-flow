@@ -220,7 +220,7 @@ def train(train_loader, model, optimizer, criterion, epoch):
                        data_time=data_time,
                        loss=losses,
                        lr=lr)))
-            loss_return = loss.avg
+            loss_return = losses
             batch_time.reset()
             data_time.reset()
             losses.reset()
@@ -291,7 +291,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
                   bestPSNR=max(evaluator.PSNR(), best_PSNR),
                   loss=losses))
 
-        return evaluator.PSNR(), loss.avg
+        return evaluator.PSNR(), losses
 
 def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
 
