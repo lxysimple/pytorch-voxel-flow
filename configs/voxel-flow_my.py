@@ -57,8 +57,9 @@ test = dict(
 
     batch_size=64,
     # data_list='test_motion',
+    # data_list='train_motion',
+    data_list='/home/xyli/pytorch-voxel-flow/testlist01_nums_my',
 
-    data_list='train_motion',
     step=3,
     # syn_type=model['syn_type'],
     crop_size=[256, 256],
