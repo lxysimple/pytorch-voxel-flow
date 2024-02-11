@@ -277,8 +277,8 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             # 创建一个转换，将张量转换为 PIL.Image 对象
             transform = transforms.ToPILImage()
             # 将张量转换为 PIL.Image 对象
-            img_res = transform(img_res*255)
-            img3 = transform(img3*255)
+            img_res = transform(img_res)
+            img3 = transform(img3)
 
             # 可选：保存图像到文件
             img_res.save("img_res.png")
