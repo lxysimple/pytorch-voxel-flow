@@ -275,6 +275,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
 
             img_res = img_res.permute(1, 2, 0)
             img_res = img_res.numpy()
+            img_res = img_res.astype(np.uint8)
             from core.utils import transforms as tf
             img_res = tf.unnormalize(img_res)
   
