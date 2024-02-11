@@ -267,17 +267,20 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
 
 
             from PIL import Image
+            import torchvision.transforms as transforms
             import builtins
             img1 = input[0][:3]
             img2 = input[0][3:]
             img3 = output[0].cpu()
 
-            img1 = img1.permute(1, 2, 0)  # 将通道维度放到最后
             input_mean = 127.5
             input_std = 127.5
             img1 = img1*input_std+input_mean
   
-            img1 = Image.fromarray(img1)
+            # 创建一个转换，将张量转换为 PIL.Image 对象
+            transform = transforms.ToPILImage(mode='RGB')
+            # 将张量转换为 PIL.Image 对象
+            img1 = transform(img1)
             # 保存图像
             img1.save("img1.png")
             # 等待用户输入
