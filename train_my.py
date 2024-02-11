@@ -297,8 +297,8 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             # img1 = Image.fromarray(img1)
             # img1.save("img1.png")
             
-            # # 等待用户输入
-            # builtins.input("Press Enter to continue...")
+            # 等待用户输入
+            builtins.input("Press Enter to continue...")
 
 
 
