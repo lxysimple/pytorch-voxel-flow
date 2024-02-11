@@ -139,7 +139,7 @@ def main():
         else:
             print(("=> no checkpoint found at '{}'".format(checkpoint_path)))
  
-    # 先并行再加载权重会导致加载权重失败
+    # 先并行再加载权重会导致精准加载权重失败
     model = model.cuda()
     model = DataParallel(model) # 开始并行
 
