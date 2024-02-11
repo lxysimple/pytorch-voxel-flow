@@ -271,16 +271,16 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             import builtins
             img1 = input[0][:3]
             img2 = input[0][3:]
-            img3 = output[0].cpu()
+            img_res = output[0].cpu()
 
-            img1 = img1*127.5+127.5 # 根据自定义标准化来反标准化
+            img_res = img_res*127.5+127.5 # 根据自定义标准化来反标准化
   
             # 创建一个转换，将张量转换为 PIL.Image 对象
             transform = transforms.ToPILImage(mode='RGB')
             # 将张量转换为 PIL.Image 对象
-            img1 = transform(img1)
+            img_res = transform(img_res)
             # 保存图像
-            img1.save("img1.png")
+            img_res.save("img_res.png")
             # 等待用户输入
             builtins.input("Press Enter to continue...")
 
