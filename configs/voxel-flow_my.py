@@ -11,7 +11,7 @@ model = dict(
 )
 
 device = [0, 1, 2, 3, 4, 5, 6, 7]
-resume = 'voxelflow_finetune_model_best.pth.tar'
+resume = 'outputs/voxelflow_1_tloss0.010_vloss0.011_PSNR28.742.pth.tar'
 # resume = 'outputs/voxelflow_1_tloss0.011_vloss0.013_PSNR28.194.pth.tar'
 # resume = ''
 weight = ''
@@ -28,7 +28,7 @@ train = dict(
         algorithm='ADAM',
         args=dict(
             # base_lr=0.0001,
-            base_lr=1e-5,
+            base_lr=1e-6,
 
             # momentum=0.9,
             weight_decay=1e-4,
