@@ -273,8 +273,8 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img3 = output[0].cpu()
 
             img1 = img1.permute(1, 2, 0)  # 将通道维度放到最后
-            input_mean = [127.5, 127.5, 127.5]
-            input_std = [127.5, 127.5, 127.5]
+            input_mean = [127, 127, 127]
+            input_std = [127, 127, 127]
             img1 = img1*input_std+input_mean
             img1 = img1.clamp(0, 1)     # 将张量的值截断到 [0, 1] 范围内
 
