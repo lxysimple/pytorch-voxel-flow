@@ -118,9 +118,7 @@ def main():
 
     # model = DataParallelwithSyncBN(
     #     model, device_ids=range(len(cfg.device))).cuda()
-    # 应先把model放GPU上，再加载checkpoint，这样optimizer优化的就是GPU上的模型了
-    model = model.cuda()
-    model = DataParallel(model) # 开始并行
+    
 
     if cfg.resume or cfg.weight:
         checkpoint_path = cfg.resume if cfg.resume else cfg.weight
@@ -141,7 +139,9 @@ def main():
         else:
             print(("=> no checkpoint found at '{}'".format(checkpoint_path)))
  
-    
+    # 应先把model放GPU上，再加载checkpoint，这样optimizer优化的就是GPU上的模型了
+    model = model.cuda()
+    model = DataParallel(model) # 开始并行
 
     # define loss function (criterion) optimizer and evaluator
     criterion = torch.nn.MSELoss().cuda()
