@@ -17,7 +17,7 @@ dataset = 'UCF101'
 
 # Training strategry
 train = dict(
-    batch_size=128,
+    batch_size=160 , # 128
     optimizer=dict(
         algorithm='ADAM',
         args=dict(
@@ -29,7 +29,9 @@ train = dict(
             # policy='step',
             # rate_decay_factor=0.1,
             # rate_decay_step=400,
-            max_epoch=400)),
+            max_epoch= 20 # 400
+        )
+    ),
     data_list='train_motion',
     step=3,
     syn_type=model['syn_type'],
@@ -47,7 +49,8 @@ test = dict(
     syn_type=model['syn_type'],
     crop_size=[256, 256],
     crop_policy='center',
-    scale_factor=[1.07])
+    scale_factor=[1.07]
+)
 
 # Logging
 output_dir = 'outputs'

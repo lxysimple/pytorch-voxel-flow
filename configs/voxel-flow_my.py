@@ -33,7 +33,11 @@ train = dict(
             # policy='step',
             # rate_decay_factor=0.1,
             # rate_decay_step=400,
-            max_epoch=400)),
+            
+            max_epoch=20 # 400
+        )
+    ),
+
     data_list='train_motion',
     step=3,
     # syn_type=model['syn_type'],
@@ -41,7 +45,8 @@ train = dict(
     rotation=[-10, 10],
     crop_policy='random',
     flip=True,
-    scale_factor=[1.07, 1.5])
+    scale_factor=[1.07, 1.5]
+)
 
 # Testing strategry
 test = dict(
