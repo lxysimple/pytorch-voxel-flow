@@ -1,6 +1,7 @@
 import random
 import cv2
 import numpy as np
+import torch
 
 
 def crop(img, offeset):
@@ -248,7 +249,7 @@ def random_blur(img, kenrel_size=(5, 5), sigma=(1e-6, 0.6)):
     else:
         return img
 
-def min_max_normalization(x: tc.Tensor) -> tc.Tensor:
+def min_max_normalization(x: torch.Tensor) -> torch.Tensor:
     """最小-最大归一化函数
 
     参数:
