@@ -224,7 +224,7 @@ def group_random_flip(img_group):
 
 
 def normalize(img, mean, std=None):
-    img = img - np.array(mean)[np.newaxis, np.newaxis, ...]
+    img = img - np.array(mean)[np.newaxis, np.newaxis, ...] # 感觉代码过时了
     if std is not None:
         img = img / np.array(std)[np.newaxis, np.newaxis, ...]
     return img
