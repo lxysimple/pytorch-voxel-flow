@@ -267,9 +267,9 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
 
 
 
-            img1 = input[:3]
-            img2 = input[3:]
-            img3 = output.cpu()
+            img1 = input[0][:3]
+            img2 = input[0][3:]
+            img3 = output[0].cpu()
 
             img1 = img1.clamp(0, 1)     # 将张量的值截断到 [0, 1] 范围内
             print('img1.shape', img1.shape)
