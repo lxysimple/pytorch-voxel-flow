@@ -130,7 +130,7 @@ def main():
             model.load_state_dict(checkpoint['state_dict'], False)
             if cfg.resume:
                 optimizer.load_state_dict(checkpoint['grad_dict'])
-                
+
             print("epoch: ",checkpoint['epoch'])
             print("arch: ",checkpoint['arch'])
             print("best_PSNR: ",checkpoint['best_PSNR'])
@@ -149,15 +149,20 @@ def main():
     for epoch in range(cfg.train.optimizer.args.max_epoch):
 
         # train for one epoch
-        train(train_loader, model, optimizer, criterion, epoch)
+        train_loss = train(train_loader, model, optimizer, criterion, epoch)
         # evaluate on validation set
         if ((epoch + 1) % cfg.logging.eval_freq == 0
                 or epoch == cfg.train.optimizer.args.max_epoch - 1):
-            PSNR = validate(val_loader, model, optimizer, criterion, evaluator)
+            PSNR, vali_loss = validate(val_loader, model, optimizer, criterion, evaluator)
             # remember best PSNR and save checkpoint
             is_best = PSNR > best_PSNR
             best_PSNR = max(PSNR, best_PSNR)
             save_checkpoint({
+                'vali_loss': vali_loss,
+                'PSNR': PSNR,
+                'train_loss': train_loss,
+
+
                 'epoch': epoch + 1,
                 'arch': dict(cfg),
                 'state_dict': model.module.state_dict(),
@@ -217,6 +222,8 @@ def train(train_loader, model, optimizer, criterion, epoch):
             batch_time.reset()
             data_time.reset()
             losses.reset()
+
+    return loss.avg
 
 
 def flip(x, dim):
@@ -282,11 +289,10 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
                   bestPSNR=max(evaluator.PSNR(), best_PSNR),
                   loss=losses))
 
-        return evaluator.PSNR()
+        return evaluator.PSNR(), loss.avg
 
-# f"./{CFG.backbone}_{epoch}_loss{losss:.3f}_score{scores:.3f}_val_loss{val_losss:.3f}_val_score{val_scores:.3f}.pt"
 def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
-
+    filename = f"{state.epoch}_tloss{state.train_loss:.3f}_vloss{state.vali_loss:.3f}_PSNR{state.PSNR:.3f}.pth.tar"
     if not cfg.output_dir:
         return
     if not os.path.exists(cfg.output_dir):
@@ -294,6 +300,7 @@ def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
     filename = os.path.join(cfg.output_dir, '_'.join((cfg.snapshot_pref,
                                                       filename)))
     torch.save(state, filename)
+
     if is_best:
         best_name = os.path.join(cfg.output_dir, '_'.join(
             (cfg.snapshot_pref, 'model_best.pth.tar')))
