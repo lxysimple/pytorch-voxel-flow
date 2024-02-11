@@ -72,8 +72,10 @@ class UCF101Test(Dataset):
             dsize=target_size)
         
         # norm
-        print('self.config.input_mean: ', self.config.input_mean)
-        print('self.config.input_std: ', self.config.input_std)
+        # self.config.input_mean:  [127.5, 127.5, 127.5]
+        # self.config.input_std:  [127.5, 127.5, 127.5]
+        # print('self.config.input_mean: ', self.config.input_mean)
+        # print('self.config.input_std: ', self.config.input_std)
         for i in range(3):
             images[i] = tf.normalize(images[i], self.config.input_mean,
                                      self.config.input_std)

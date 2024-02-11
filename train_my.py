@@ -271,7 +271,11 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img1 = input[0][:3]
             img2 = input[0][3:]
             img3 = output[0].cpu()
-            
+
+            std = [127.5, 127.5, 127.5]
+            mean = [127.5, 127.5, 127.5]
+            img1 = img1*std-mean
+
             img1 = img1.clamp(0, 1)     # 将张量的值截断到 [0, 1] 范围内
             img1 = transforms.ToPILImage()(img1)  # 使用 ToPILImage 转换为 PIL 图像
             # 保存图像
