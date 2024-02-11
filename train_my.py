@@ -273,15 +273,16 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img2 = input[0][3:]
             img_res = output[0].cpu()
 
+
+            img_res = img_res.numpy()
+            img_res = img_res.permute(1, 2, 0)
             from core.utils import transforms as tf
             img_res = tf.unnormalize(img_res)
   
-            # 创建一个转换，将张量转换为 PIL.Image 对象
-            transform = transforms.ToPILImage(mode='RGB')
-            # 将张量转换为 PIL.Image 对象
-            img_res = transform(img_res)
-            # 保存图像
+            # 创建一个 PIL 图像对象
+            img_res = Image.fromarray(img_res)
             img_res.save("img_res.png")
+            
             # 等待用户输入
             builtins.input("Press Enter to continue...")
 
