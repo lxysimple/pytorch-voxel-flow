@@ -27,7 +27,7 @@ train = dict(
     optimizer=dict(
         algorithm='ADAM',
         args=dict(
-            base_lr=0.0001,
+            # base_lr=0.0001,
             base_lr=1e-5,
 
             # momentum=0.9,
