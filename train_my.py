@@ -273,7 +273,8 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img2 = input[0][3:]
             img_res = output[0].cpu()
 
-            img_res = img_res*127.5+127.5 # 根据自定义标准化来反标准化
+            from core.utils import transforms as tf
+            img_res = tf.unnormalize(img_res)
   
             # 创建一个转换，将张量转换为 PIL.Image 对象
             transform = transforms.ToPILImage(mode='RGB')
