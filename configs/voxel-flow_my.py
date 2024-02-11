@@ -11,7 +11,7 @@ model = dict(
 )
 
 device = [0, 1, 2, 3, 4, 5, 6, 7]
-resume = ''
+resume = 'voxelflow_model_best.pth.tar'
 weight = ''
 dataset = 'UCF101'
 # dataset = 'ucf-101'
@@ -33,7 +33,7 @@ train = dict(
             # policy='step',
             # rate_decay_factor=0.1,
             # rate_decay_step=400,
-            
+
             max_epoch=20 # 400
         )
     ),
