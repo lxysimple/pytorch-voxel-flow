@@ -266,26 +266,26 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             output = model(input_var)
 
 
-            from PIL import Image
-            import torchvision.transforms as transforms
-            import builtins
-            img1 = input[0][:3]
-            img2 = input[0][3:]
-            img3 = target[0]
-            img_res = output[0].cpu()
+            # from PIL import Image
+            # import torchvision.transforms as transforms
+            # import builtins
+            # img1 = input[0][:3]
+            # img2 = input[0][3:]
+            # img3 = target[0]
+            # img_res = output[0].cpu()
 
-            # 创建一个转换，将张量转换为 PIL.Image 对象
-            transform = transforms.ToPILImage()
-            # 将张量转换为 PIL.Image 对象
-            img_res = transform(img_res)
-            img3 = transform(img3)
+            # # 创建一个转换，将张量转换为 PIL.Image 对象
+            # transform = transforms.ToPILImage()
+            # # 将张量转换为 PIL.Image 对象
+            # img_res = transform(img_res)
+            # img3 = transform(img3)
 
-            # 可选：保存图像到文件
-            img_res.save("img_res.png")
-            img3.save("img3.png")
+            # # 可选：保存图像到文件
+            # img_res.save("img_res.png")
+            # img3.save("img3.png")
             
-            # 等待用户输入
-            builtins.input("Press Enter to continue...")
+            # # 等待用户输入
+            # builtins.input("Press Enter to continue...")
 
 
 
