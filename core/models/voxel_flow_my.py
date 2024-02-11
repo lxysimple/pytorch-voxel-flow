@@ -155,7 +155,7 @@ class VoxelFlow(nn.Module):
         x = self.bottleneck(x) # ->(b, 256, 32, 32)
         x = self.bottleneck_bn(x)
         x = self.relu(x)
-
+ 
         x = nn.functional.upsample( # ->(b, 256, 64, 64)
             x, scale_factor=2, mode='bilinear', align_corners=False)
 
