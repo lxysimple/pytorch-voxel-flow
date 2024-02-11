@@ -72,6 +72,14 @@ class UCF101Test(Dataset):
 
         # mask = torch.from_numpy(mask).contiguous().long()
 
+        # resize
+        target_size = self.config.crop_size
+        images = tf.group_rescale(
+            images,
+            0, [cv2.INTER_LINEAR for _ in range(self.config.step)],
+            dsize=target_size)
+        
+
         if not hasmask:
             if self.config.syn_type == 'inter':
                 return torch.cat([images[0], images[2]], dim=0), images[1]
