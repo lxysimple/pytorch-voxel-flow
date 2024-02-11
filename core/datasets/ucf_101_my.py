@@ -12,7 +12,8 @@ class UCF101(Dataset):
     def __init__(self, config, istrain=True):
         super(UCF101, self).__init__()
         dataset_path = 'data/ucf-101'
-        with open(os.path.join(dataset_path, config.data_list + '.txt')) as f:
+        # with open(os.path.join(dataset_path, config.data_list + '.txt')) as f:
+        with open(config.data_list + '.txt') as f:
             self.img_list = []
 
             for line in f:
@@ -48,10 +49,17 @@ class UCF101(Dataset):
             #                  '{0:06d}.png'.format(frame_idx + i))).astype(
             #                      np.float32)
             
+            # img = cv2.imread(
+            #     os.path.join(self.img_path, video_dir,
+            #                  'img_{0:05d}.jpg'.format(frame_idx + i))).astype(
+            #                      np.float32)
+
             img = cv2.imread(
-                os.path.join(self.img_path, video_dir,
-                             'img_{0:05d}.jpg'.format(frame_idx + i))).astype(
-                                 np.float32)
+                        os.path.join(
+                            video_dir,'img_{0:05d}.jpg'.format(frame_idx + i)
+                        )
+                  ).astype(np.float32)
+            
             images.append(img)
 
         # flip
