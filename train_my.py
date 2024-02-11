@@ -127,8 +127,10 @@ def main():
         if os.path.isfile(checkpoint_path):
             print(("=> loading checkpoint '{}'".format(checkpoint_path)))
             checkpoint = torch.load(checkpoint_path)
-            model.load_state_dict(checkpoint['state_dict'], False)
-            
+
+            # model.load_state_dict(checkpoint['state_dict'], False)
+            model.load_state_dict(checkpoint['state_dict'])
+
             # 不用预训练权重所对应的学习率
             # if cfg.resume: 
             #     optimizer.load_state_dict(checkpoint['grad_dict'])
