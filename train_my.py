@@ -128,8 +128,10 @@ def main():
             print(("=> loading checkpoint '{}'".format(checkpoint_path)))
             checkpoint = torch.load(checkpoint_path)
             model.load_state_dict(checkpoint['state_dict'], False)
-            if cfg.resume:
-                optimizer.load_state_dict(checkpoint['grad_dict'])
+            
+            # 不用预训练权重所对应的学习率
+            # if cfg.resume: 
+            #     optimizer.load_state_dict(checkpoint['grad_dict'])
 
             print("epoch: ",checkpoint['epoch'])
             print("arch: ",checkpoint['arch'])

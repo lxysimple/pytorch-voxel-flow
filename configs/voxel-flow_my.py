@@ -11,7 +11,8 @@ model = dict(
 )
 
 device = [0, 1, 2, 3, 4, 5, 6, 7]
-resume = 'voxelflow_finetune_model_best.pth.tar'
+# resume = 'voxelflow_finetune_model_best.pth.tar'
+resume = 'outputs/voxelflow_1_tloss0.011_vloss0.013_PSNR28.194.pth.tar'
 # resume = ''
 weight = ''
 dataset = 'UCF101'
