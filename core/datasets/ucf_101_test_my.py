@@ -71,6 +71,11 @@ class UCF101Test(Dataset):
             0, [cv2.INTER_LINEAR for _ in range(self.config.step)],
             dsize=target_size)
         
+
+        cv2.imwrite('output_image.jpg', images[0])
+        # 等待用户输入
+        input("Press Enter to continue...")
+        
         # norm
         # self.config.input_mean:  [127.5, 127.5, 127.5]
         # self.config.input_std:  [127.5, 127.5, 127.5]
