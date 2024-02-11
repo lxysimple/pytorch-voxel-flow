@@ -149,7 +149,7 @@ def main():
     for epoch in range(cfg.train.optimizer.args.max_epoch):
 
         # train for one epoch
-        # train_loss = train(train_loader, model, optimizer, criterion, epoch)
+        train_loss = train(train_loader, model, optimizer, criterion, epoch)
         # evaluate on validation set
         if ((epoch + 1) % cfg.logging.eval_freq == 0
                 or epoch == cfg.train.optimizer.args.max_epoch - 1):
