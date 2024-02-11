@@ -127,8 +127,7 @@ def main():
         else:
             print(("=> no checkpoint found at '{}'".format(checkpoint_path)))
  
-
-    optimizer = optimizer.cuda()
+    optimizer = optimizer.to('cuda')
     # model = DataParallelwithSyncBN(
     #     model, device_ids=range(len(cfg.device))).cuda()
     model = model.cuda()
