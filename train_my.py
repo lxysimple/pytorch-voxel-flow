@@ -118,7 +118,7 @@ def main():
 
     # model = DataParallelwithSyncBN(
     #     model, device_ids=range(len(cfg.device))).cuda()
-    # 应先把model放GPU上，再加载checkpoint，这样就无需把optimizer放cuda了
+    # 应先把model放GPU上，再加载checkpoint，这样optimizer优化的就是GPU上的模型了
     model = model.cuda()
     model = DataParallel(model) # 开始并行
 
