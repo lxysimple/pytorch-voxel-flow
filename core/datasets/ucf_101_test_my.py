@@ -64,12 +64,12 @@ class UCF101Test(Dataset):
         # mask = (mask.squeeze() > 0).astype(np.uint8)
 
         
-        # resize
-        target_size = self.config.crop_size
-        images = tf.group_rescale(
-            images,
-            0, [cv2.INTER_LINEAR for _ in range(self.config.step)],
-            dsize=target_size)
+        # # resize
+        # target_size = self.config.crop_size
+        # images = tf.group_rescale(
+        #     images,
+        #     0, [cv2.INTER_LINEAR for _ in range(self.config.step)],
+        #     dsize=target_size)
         
 
         

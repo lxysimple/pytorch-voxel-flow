@@ -273,23 +273,32 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img2 = input[0][3:]
             img_res = output[0].cpu()
 
-            img1 = img1.permute(1, 2, 0)
-            img1 = img1.numpy()
-            img1 = img1.astype(np.uint8)
-            from core.utils import transforms as tf
-            img1 = tf.unnormalize(img1)
+            # 创建一个转换，将张量转换为 PIL.Image 对象
+            transform = transforms.ToPILImage()
+            # 将张量转换为 PIL.Image 对象
+            img_res = transform(img_res)
+            # 显示图像
+            img_res.show() 
+            # 可选：保存图像到文件
+            img_res.save("img_res.png")
 
-            img1 = torch.tensor(img1)
-            img1 = img1.permute(2, 0, 1)
-            img1 = img1.numpy()
-            img1 = img1.astype(np.uint8)
+            # img1 = img1.permute(1, 2, 0)
+            # img1 = img1.numpy()
+            # img1 = img1.astype(np.uint8)
+            # from core.utils import transforms as tf
+            # img1 = tf.unnormalize(img1)
+
+            # img1 = torch.tensor(img1)
+            # img1 = img1.permute(2, 0, 1)
+            # img1 = img1.numpy()
+            # img1 = img1.astype(np.uint8)
   
-            # 创建一个 PIL 图像对象
-            img1 = Image.fromarray(img1)
-            img1.save("img1.png")
+            # # 创建一个 PIL 图像对象
+            # img1 = Image.fromarray(img1)
+            # img1.save("img1.png")
             
-            # 等待用户输入
-            builtins.input("Press Enter to continue...")
+            # # 等待用户输入
+            # builtins.input("Press Enter to continue...")
 
 
 
