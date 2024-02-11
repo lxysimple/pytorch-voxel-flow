@@ -130,6 +130,10 @@ def main():
             model.load_state_dict(checkpoint['state_dict'], False)
             if cfg.resume:
                 optimizer.load_state_dict(checkpoint['grad_dict'])
+                
+            print("epoch: ",checkpoint['epoch'])
+            print("arch: ",checkpoint['arch'])
+            print("best_PSNR: ",checkpoint['best_PSNR'])
         else:
             print(("=> no checkpoint found at '{}'".format(checkpoint_path)))
  
@@ -280,8 +284,9 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
 
         return evaluator.PSNR()
 
-
+# f"./{CFG.backbone}_{epoch}_loss{losss:.3f}_score{scores:.3f}_val_loss{val_losss:.3f}_val_score{val_scores:.3f}.pt"
 def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
+
     if not cfg.output_dir:
         return
     if not os.path.exists(cfg.output_dir):
