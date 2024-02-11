@@ -70,5 +70,4 @@ test = dict(
 output_dir = 'outputs'
 snapshot_pref = 'voxelflow'
 # logging = dict(log_dir='', print_freq=50, eval_freq=1)
-# print_freq=50时，永远都输出不了，因为i+=49，永远无法被50除尽
 logging = dict(log_dir='', print_freq=40, eval_freq=1)
