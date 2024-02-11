@@ -1,43 +1,20 @@
-# import os
-
-# # 获取当前目录
-# # current_dir = os.getcwd()
-# current_dir = '/home/xyli/pytorch-voxel-flow/data/ucf-101/rawframes/'
-
-# # 获取当前目录下所有子目录
-# subdirectories = [d for d in os.listdir(current_dir) ]
-
-# print(subdirectories)
-# # 打开 result.txt 文件
-# with open('result.txt', 'w') as f:
-#     # 遍历每个子目录
-#     for subdir in subdirectories:
-#         subdir_path = os.path.join(current_dir, subdir)
-#         # 统计当前子目录中图片数量
-#         image_count = sum([len(files) for _, _, files in os.walk(subdir_path)])
-#         # 将结果写入 result.txt 文件
-#         f.write(f"{subdir_path}\t{image_count}\n")
+"""
+读一个文件，每一行是一个地址，读取这个地址，并统计该地址下有多少子文件，其数量记录到该地址后面，以空格为分隔符
+"""
 
 import os
 
-# 获取当前目录
-# current_dir = os.getcwd()
-current_dir = '/home/xyli/pytorch-voxel-flow/data/ucf-101/rawframes/'
+# 输入文件路径和输出文件路径
+input_file = "/home/xyli/pytorch-voxel-flow/trainlist01_my.txt"
+output_file = "/home/xyli/pytorch-voxel-flow/trainlist01_nums_my.txt"
 
-# 获取当前目录下所有一级子目录
-subdirectories = [d for d in os.listdir(current_dir)]
-
-# 打开 result.txt 文件
-with open('train_motion.txt', 'w') as f:
-    # 遍历每个一级子目录
-    for subdir in subdirectories:
-        subdir_path = os.path.join(current_dir, subdir)
-        # 获取当前一级子目录下所有二级子目录
-        sub_subdirectories = [d for d in os.listdir(subdir_path)]
-        # 遍历每个二级子目录
-        for sub_subdir in sub_subdirectories:
-            sub_subdir_path = os.path.join(subdir_path, sub_subdir)
-            # 统计当前二级子目录中图片数量
-            image_count = sum([len(files) for _, _, files in os.walk(sub_subdir_path) ])
-            # 将结果写入 result.txt 文件
-            f.write(f"{sub_subdir_path} {image_count}\n")
+# 打开输入文件和输出文件
+with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out:
+    # 逐行读取输入文件
+    for line in f_in:
+        # 去除行尾的换行符，并获取地址
+        address = line.strip()
+        # 统计地址下的子文件数量
+        num_files = len(os.listdir(address))
+        # 将地址和子文件数量写入输出文件
+        f_out.write(f"{address} {num_files}\n")
