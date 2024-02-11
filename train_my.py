@@ -265,6 +265,22 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             # compute output
             output = model(input_var)
 
+
+
+            img1 = input[:3]
+            img2 = input[3:]
+            img3 = output.cpu()
+
+            img1 = img1.clamp(0, 1)     # 将张量的值截断到 [0, 1] 范围内
+            img1 = img1.permute(1, 2, 0)  # 将通道维度放到最后
+            img1 = transforms.ToPILImage()(img1)  # 使用 ToPILImage 转换为 PIL 图像
+            # 保存图像
+            image.save("img1.png")
+            # 等待用户输入
+            input("Press Enter to continue...")
+
+
+
             loss = criterion(output, target_var)
 
             # measure accuracy and record loss
