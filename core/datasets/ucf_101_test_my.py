@@ -80,8 +80,9 @@ class UCF101Test(Dataset):
         # print('self.config.input_std: ', self.config.input_std)
 
         for i in range(3):
-            images[i] = tf.normalize(images[i], self.config.input_mean,
-                                     self.config.input_std)
+            # images[i] = tf.normalize(images[i], self.config.input_mean,
+            #                          self.config.input_std)
+            images[i] = min_max_normalization(images[i])
             images[i] = torch.from_numpy(images[i]).permute(
                 2, 0, 1).contiguous().float()
 

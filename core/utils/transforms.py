@@ -247,3 +247,31 @@ def random_blur(img, kenrel_size=(5, 5), sigma=(1e-6, 0.6)):
         return blur(img, kenrel_size, sigma)
     else:
         return img
+
+def min_max_normalization(x: tc.Tensor) -> tc.Tensor:
+    """最小-最大归一化函数
+
+    参数:
+    x (tc.Tensor): 输入张量，形状为(batch, f1, ...)
+
+    返回:
+    tc.Tensor: 归一化后的张量，保持原始形状
+    """
+    # 获取输入张量的形状
+    shape = x.shape
+
+    # 如果输入张量的维度大于2，将其展平成二维张量
+    if x.ndim > 2:
+        x = x.reshape(x.shape[0], -1)
+
+    # 计算每行的最小值和最大值
+    min_ = x.min(dim=-1, keepdim=True)[0]
+    max_ = x.max(dim=-1, keepdim=True)[0]
+
+    # 如果最小值的平均值为0，最大值的平均值为1，说明已经是归一化状态，直接返回
+    if min_.mean() == 0 and max_.mean() == 1:
+        return x.reshape(shape)
+
+    # 进行最小-最大归一化处理
+    x = (x - min_) / (max_ - min_ + 1e-9)
+    return x.reshape(shape)
