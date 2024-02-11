@@ -27,6 +27,8 @@ train = dict(
         algorithm='ADAM',
         args=dict(
             base_lr=0.0001,
+            base_lr=1e-5,
+
             # momentum=0.9,
             weight_decay=1e-4,
             # policy='poly_epoch',
