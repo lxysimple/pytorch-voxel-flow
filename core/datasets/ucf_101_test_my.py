@@ -5,6 +5,7 @@ import torch
 from torch.utils.data import Dataset
 from core.utils import transforms as tf
 
+import random
 
 class UCF101Test(Dataset):
 
