@@ -39,7 +39,9 @@ train = dict(
         )
     ),
 
-    data_list='train_motion',
+    # data_list='train_motion',
+    data_list='/home/xyli/pytorch-voxel-flow/trainlist01_nums_my',
+    
     step=3,
     # syn_type=model['syn_type'],
     crop_size=[256, 256],
