@@ -67,4 +67,4 @@ output_dir = 'outputs'
 snapshot_pref = 'voxelflow'
 # logging = dict(log_dir='', print_freq=50, eval_freq=1)
 # 4*batch_size(160)=640,每640个样本输出一次log
-logging = dict(log_dir='', print_freq=4, eval_freq=1)
+logging = dict(log_dir='', print_freq=40, eval_freq=1)
