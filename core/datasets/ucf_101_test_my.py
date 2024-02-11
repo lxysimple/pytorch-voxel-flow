@@ -63,6 +63,14 @@ class UCF101Test(Dataset):
         #     cv2.IMREAD_UNCHANGED)
         # mask = (mask.squeeze() > 0).astype(np.uint8)
 
+        
+        # resize
+        target_size = self.config.crop_size
+        images = tf.group_rescale(
+            images,
+            0, [cv2.INTER_LINEAR for _ in range(self.config.step)],
+            dsize=target_size)
+        
         # norm
         for i in range(3):
             images[i] = tf.normalize(images[i], self.config.input_mean,
@@ -72,12 +80,7 @@ class UCF101Test(Dataset):
 
         # mask = torch.from_numpy(mask).contiguous().long()
 
-        # resize
-        target_size = self.config.crop_size
-        images = tf.group_rescale(
-            images,
-            0, [cv2.INTER_LINEAR for _ in range(self.config.step)],
-            dsize=target_size)
+        
         
 
         if not hasmask:
