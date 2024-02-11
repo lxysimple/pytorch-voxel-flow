@@ -179,6 +179,7 @@ def train(train_loader, model, optimizer, criterion, epoch):
     # switch to train mode
     model.train()
 
+    loss_return = None
     end = time.time()
     for i, (input, target) in enumerate(train_loader):
         # measure data loading time
@@ -219,11 +220,12 @@ def train(train_loader, model, optimizer, criterion, epoch):
                        data_time=data_time,
                        loss=losses,
                        lr=lr)))
+            loss_return = loss.avg
             batch_time.reset()
             data_time.reset()
             losses.reset()
 
-    return loss.avg
+    return loss_return
 
 
 def flip(x, dim):
