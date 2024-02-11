@@ -277,7 +277,6 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             input_std = 127.5
             img1 = img1*input_std+input_mean
   
-            img1 = img1.numpy()
             img1 = Image.fromarray(img1)
             # 保存图像
             img1.save("img1.png")
