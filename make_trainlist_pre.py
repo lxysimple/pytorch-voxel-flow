@@ -5,10 +5,16 @@
 保存在当前目录下trainlist01_my.txt
 """
 
+# # 输入文件路径
+# input_file = "/home/xyli/pytorch-voxel-flow/data/ucf-101/annotations/trainlist01.txt"
+# # 输出文件路径
+# output_file = "trainlist01_my.txt"
+
 # 输入文件路径
-input_file = "/home/xyli/pytorch-voxel-flow/data/ucf-101/annotations/trainlist01.txt"
+input_file = "/home/xyli/pytorch-voxel-flow/data/ucf-101/annotations/testlist01.txt"
 # 输出文件路径
-output_file = "trainlist01_my.txt"
+output_file = "testlist01_my.txt"
+
 # 前缀
 prefix = "/home/xyli/pytorch-voxel-flow/data/ucf-101/rawframes/"
 

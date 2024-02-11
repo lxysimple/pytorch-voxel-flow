@@ -7,8 +7,11 @@ User
 import os
 
 # 输入文件路径和输出文件路径
-input_file = "/home/xyli/pytorch-voxel-flow/trainlist01_my.txt"
-output_file = "/home/xyli/pytorch-voxel-flow/trainlist01_nums_my.txt"
+# input_file = "/home/xyli/pytorch-voxel-flow/trainlist01_my.txt"
+# output_file = "/home/xyli/pytorch-voxel-flow/trainlist01_nums_my.txt"
+
+input_file = "/home/xyli/pytorch-voxel-flow/testlist01_my.txt"
+output_file = "/home/xyli/pytorch-voxel-flow/testlist01_nums_my.txt"
 
 # 打开输入文件和输出文件
 with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out:
