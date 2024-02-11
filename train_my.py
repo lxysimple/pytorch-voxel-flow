@@ -273,8 +273,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img2 = input[0][3:]
             img3 = output[0].cpu()
 
-            input_mean = 127.5
-            img1 = img1+input_mean # 根据自定义标准化来反标准化
+            img1 = img1*127.5+127.5 # 根据自定义标准化来反标准化
   
             # 创建一个转换，将张量转换为 PIL.Image 对象
             transform = transforms.ToPILImage(mode='RGB')
