@@ -273,10 +273,16 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img2 = input[0][3:]
             img_res = output[0].cpu()
 
+            img1 = img1.permute(1, 2, 0)
             img1 = img1.numpy()
             img1 = img1.astype(np.uint8)
             from core.utils import transforms as tf
             img1 = tf.unnormalize(img1)
+
+            img1 = torch.tensor(img1)
+            img1 = img1.permute(2, 0, 1)
+            img1 = img1.numpy()
+            img1 = img1.astype(np.uint8)
   
             # 创建一个 PIL 图像对象
             img1 = Image.fromarray(img1)
