@@ -130,7 +130,7 @@ def main():
             model.load_state_dict(checkpoint['state_dict'])
 
             # 不用预训练权重所对应的学习率
-            # if cfg.resume: 
+            # if cfg.resume: # 前提需要模型在GPU上
             #     optimizer.load_state_dict(checkpoint['grad_dict'])
 
             print("epoch: ",checkpoint['epoch'])
@@ -139,7 +139,7 @@ def main():
         else:
             print(("=> no checkpoint found at '{}'".format(checkpoint_path)))
  
-    # 应先把model放GPU上，再加载checkpoint，这样optimizer优化的就是GPU上的模型了
+    # 先并行再加载权重会导致加载权重失败
     model = model.cuda()
     model = DataParallel(model) # 开始并行
 
