@@ -267,6 +267,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
 
 
             import torchvision.transforms as transforms
+            import builtins
             img1 = input[0][:3]
             img2 = input[0][3:]
             img3 = output[0].cpu()
@@ -275,7 +276,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             # 保存图像
             img1.save("img1.png")
             # 等待用户输入
-            input("Press Enter to continue...")
+            builtins.input("Press Enter to continue...")
 
 
 
