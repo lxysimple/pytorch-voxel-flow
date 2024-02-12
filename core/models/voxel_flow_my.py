@@ -212,10 +212,10 @@ class VoxelFlow(nn.Module):
             # coor_x_2 = grid_x - flow[:, 0, :, :] 
             # coor_y_2 = grid_y - flow[:, 1, :, :] 
 
-            coor_x_1 = grid_x - flow[:, 0, :, :] 
-            coor_y_1 = grid_y - flow[:, 1, :, :] 
-            coor_x_2 = grid_x - flow[:, 0, :, :] * 2
-            coor_y_2 = grid_y - flow[:, 1, :, :] * 2
+            coor_x_1 = grid_x - flow[:, 0, :, :] *4
+            coor_y_1 = grid_y - flow[:, 1, :, :] *4
+            coor_x_2 = grid_x - flow[:, 0, :, :] 
+            coor_y_2 = grid_y - flow[:, 1, :, :] 
         else:
             raise ValueError('Unknown syn_type ' + self.syn_type)
 
@@ -235,7 +235,6 @@ class VoxelFlow(nn.Module):
         # 使其更好地融合背景
         mask = 0.5 * (1.0 + mask)
         mask = mask.repeat([1, 3, 1, 1])
-        # x = mask * output_1 + (1.0 - mask) * output_2
-        x = mask * output_2 + (1.0 - mask) * output_1
+        x = mask * output_1 + (1.0 - mask) * output_2
 
         return x
