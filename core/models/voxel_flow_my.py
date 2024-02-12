@@ -235,6 +235,7 @@ class VoxelFlow(nn.Module):
         # 使其更好地融合背景
         mask = 0.5 * (1.0 + mask)
         mask = mask.repeat([1, 3, 1, 1])
-        x = mask * output_1 + (1.0 - mask) * output_2
+        # x = mask * output_1 + (1.0 - mask) * output_2
+        x = mask * output_2 + (1.0 - mask) * output_1
 
         return x
