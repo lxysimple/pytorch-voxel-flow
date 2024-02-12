@@ -215,13 +215,13 @@ class VoxelFlow(nn.Module):
         else:
             raise ValueError('Unknown syn_type ' + self.syn_type)
 
-        # 将第1个光流产生的变化应用到第1个图
+        # 将光流产生的变化应用到第1个图
         output_1 = torch.nn.functional.grid_sample(
             input[:, 0:3, :, :],
             torch.stack([coor_x_1, coor_y_1], dim=3),
             padding_mode='border')
 
-        # 将第2个光流产生的变化应用到第2个图
+        # 将光流产生的变化应用到第2个图
         output_2 = torch.nn.functional.grid_sample(
             input[:, 3:6, :, :],
             torch.stack([coor_x_2, coor_y_2], dim=3),
