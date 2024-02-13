@@ -207,6 +207,9 @@ def train(train_loader, model, optimizer, criterion, epoch):
         img1 = input[0][:3]
         img2 = input[0][3:]
         img3 = target[0]
+
+        img4 = img3 - img2
+
         img_res = output[0].cpu()
 
         # 创建一个转换，将张量转换为 PIL.Image 对象
@@ -217,13 +220,15 @@ def train(train_loader, model, optimizer, criterion, epoch):
         img2 = transform(img2)
         img1 = transform(img1)
 
+        img4 = transform(img4)
+
         # 可选：保存图像到文件
         img_res.save("img_res.png")
         img3.save("img3.png")
         img2.save("img2.png")
         img1.save("img1.png")
 
-        img4 = img3 - img2
+        
 
         
 
