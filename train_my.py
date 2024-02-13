@@ -210,6 +210,9 @@ def train(train_loader, model, optimizer, criterion, epoch):
         img2 = input[0][3:]
         img3 = target[0]
 
+        from IPython import embed
+        
+        embed()
         img4 = img3 - img2
         img4 = tf.normalize(
                     img4, 
