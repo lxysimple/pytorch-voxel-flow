@@ -209,6 +209,13 @@ def train(train_loader, model, optimizer, criterion, epoch):
         img3 = target[0]
 
         img4 = img3 - img2
+        img4 = tf.normalize(
+                    img4, 
+                    torch.mean(img4, dim=-1, keepdim=True), 
+                    torch.std(img4, dim=-1, unbiased=True, keepdim=True)
+                )
+        img4 = img4 * 200
+
 
         img_res = output[0].cpu()
 
@@ -229,15 +236,6 @@ def train(train_loader, model, optimizer, criterion, epoch):
         img1.save("img1.png")
 
         
-
-        
-
-        img4 = tf.normalize(
-                    img4, 
-                    torch.mean(img4, dim=-1, keepdim=True), 
-                    torch.std(img4, dim=-1, unbiased=True, keepdim=True)
-                )
-        img4 = img4 * 200
         img4.save("img4.png")
 
         # 等待用户输入
