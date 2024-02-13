@@ -27,6 +27,8 @@ from eval import EvalPSNR
 # 导入 PyTorch 的 DataParallel 模块
 from torch.nn.parallel import DataParallel # 单机多卡的分布式训练（数据并行） 模型训练加速
 
+from core.utils import transforms as tf
+
 best_PSNR = 0
 
 
