@@ -222,7 +222,19 @@ def train(train_loader, model, optimizer, criterion, epoch):
         img3.save("img3.png")
         img2.save("img2.png")
         img1.save("img1.png")
+
+        img4 = img3 - img2
+
         
+
+        img4 = tf.normalize(
+                    img4, 
+                    torch.mean(img4, dim=-1, keepdim=True), 
+                    torch.std(img4, dim=-1, unbiased=True, keepdim=True)
+                )
+        img4 = img4 * 200
+        img4.save("img4.png")
+
         # 等待用户输入
         builtins.input("Press Enter to continue...")
 
