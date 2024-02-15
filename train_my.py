@@ -199,7 +199,7 @@ def train(train_loader, model, optimizer, criterion, epoch):
         target_var = torch.autograd.Variable(target).cuda()
 
         # compute output
-        output = model(input_var, syn_type='extra')
+        output = model(input_var, syn_type=cfg.train['syn_type'])
 
 
 
@@ -324,7 +324,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             target_var = torch.autograd.Variable(target).cuda()
 
             # compute output
-            output = model(input_var, syn_type="extra")
+            output = model(input_var, syn_type=cfg.test['syn_type'])
 
 
             # from PIL import Image
