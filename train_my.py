@@ -336,11 +336,15 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img3 = target[0]
             img_res = output[0].cpu()
 
-            img1 = img1[:, :, [1, 0, 2]]
-            img2 = img2[:, :, [1, 2, 0]]
-            img3 = img3[:, :, [0, 2, 1]]
+            # img1 = img1[:, :, [1, 0, 2]]
+            # img2 = img2[:, :, [1, 2, 0]]
+            # img3 = img3[:, :, [0, 2, 1]]
 
 
+            from IPython import embed
+        
+            embed()
+            
             # 创建一个转换，将张量转换为 PIL.Image 对象
             transform = transforms.ToPILImage()
             # 将张量转换为 PIL.Image 对象
