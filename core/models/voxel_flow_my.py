@@ -231,7 +231,8 @@ class VoxelFlow(nn.Module):
 
         # 将 mask 中的像素值从原来的 [0, 1] 区间缩放到 [0.5, 1.0] 区间
         # 使其更好地融合背景
-        # mask = 0.5 * (1.0 + mask)
+
+        mask = 0.5 * (1.0 + mask)
         mask = mask.repeat([1, 3, 1, 1])
 
         x = mask * output_1 + (1.0 - mask) * output_2
