@@ -217,10 +217,11 @@ def train(train_loader, model, optimizer, criterion, epoch):
         img3 = img3[[2, 1, 0], :, :]
         img_res = img_res[[2, 1, 0], :, :]
 
-        # from IPython import embed
-        # embed()
+        from IPython import embed
+        embed()
 
-        img4 = img_res - img3
+        img4 = np.abs(img_res - img3)
+        
         img4 = img4.detach()
         # img4 = tf.normalize(img4, torch.mean(img4, dim=-1, keepdim=True), 
         #             torch.std(img4, dim=-1, unbiased=True, keepdim=True)
