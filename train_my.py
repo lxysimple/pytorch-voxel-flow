@@ -156,6 +156,11 @@ def main():
 
         # train for one epoch
         train_loss = AverageMeter()
+        train_loss.avg = 1.0
+        train_loss.count = 1.0
+        train_loss.sum = 1.0
+        train_loss.val = 1.0 
+        
         # train_loss = train(train_loader, model, optimizer, criterion, epoch)
 
         # evaluate on validation set
