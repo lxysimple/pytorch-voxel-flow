@@ -199,7 +199,7 @@ def train(train_loader, model, optimizer, criterion, epoch):
         target_var = torch.autograd.Variable(target).cuda()
 
         # compute output
-        output = model(input_var)
+        output = model(input_var, syn_type='extra')
 
 
 
