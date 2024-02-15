@@ -236,8 +236,6 @@ def train(train_loader, model, optimizer, criterion, epoch):
 
         img4 = transform(img4)
 
-        img4 = img4[0,0]
-
         # 可选：保存图像到文件
         img_res.save("img_res.png")
         img3.save("img3.png")
