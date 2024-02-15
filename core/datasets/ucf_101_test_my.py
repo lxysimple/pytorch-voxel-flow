@@ -89,8 +89,10 @@ class UCF101Test(Dataset):
             
             images[i] = torch.from_numpy(images[i]).permute(
                 2, 0, 1).contiguous().float()
+
             # images[i] = tf.min_max_normalization(images[i])
-            print(images[i].shape)
+
+
 
         # mask = torch.from_numpy(mask).contiguous().long()
 
