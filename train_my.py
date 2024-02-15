@@ -204,50 +204,50 @@ def train(train_loader, model, optimizer, criterion, epoch):
 
 
 
-        from PIL import Image
-        import torchvision.transforms as transforms
-        import builtins
-        img1 = input[0][:3]
-        img2 = input[0][3:]
-        img3 = target[0]
-        img_res = output[0].cpu().detach()
+        # from PIL import Image
+        # import torchvision.transforms as transforms
+        # import builtins
+        # img1 = input[0][:3]
+        # img2 = input[0][3:]
+        # img3 = target[0]
+        # img_res = output[0].cpu().detach()
 
-        img1 = img1[[2, 1, 0], :, :]
-        img2 = img2[[2, 1, 0], :, :]
-        img3 = img3[[2, 1, 0], :, :]
-        img_res = img_res[[2, 1, 0], :, :]
+        # img1 = img1[[2, 1, 0], :, :]
+        # img2 = img2[[2, 1, 0], :, :]
+        # img3 = img3[[2, 1, 0], :, :]
+        # img_res = img_res[[2, 1, 0], :, :]
 
-        # from IPython import embed
-        # embed()
+        # # from IPython import embed
+        # # embed()
 
-        img4 = np.abs(img_res - img3)
-        # img4 = 0.2989*img4[0]+0.5870*img4[1]+0.1140*img4[2]
+        # img4 = np.abs(img_res - img3)
+        # # img4 = 0.2989*img4[0]+0.5870*img4[1]+0.1140*img4[2]
 
 
-        # img4 = tf.normalize(img4, torch.mean(img4, dim=-1, keepdim=True), 
-        #             torch.std(img4, dim=-1, unbiased=True, keepdim=True)
-        #         )
+        # # img4 = tf.normalize(img4, torch.mean(img4, dim=-1, keepdim=True), 
+        # #             torch.std(img4, dim=-1, unbiased=True, keepdim=True)
+        # #         )
 
-        # 创建一个转换，将张量转换为 PIL.Image 对象
-        transform = transforms.ToPILImage()
+        # # 创建一个转换，将张量转换为 PIL.Image 对象
+        # transform = transforms.ToPILImage()
 
-        # 将张量转换为 PIL.Image 对象
-        img_res = transform(img_res)
-        img3 = transform(img3)
-        img2 = transform(img2)
-        img1 = transform(img1)
+        # # 将张量转换为 PIL.Image 对象
+        # img_res = transform(img_res)
+        # img3 = transform(img3)
+        # img2 = transform(img2)
+        # img1 = transform(img1)
 
-        img4 = transform(img4)
+        # img4 = transform(img4)
 
-        # 可选：保存图像到文件
-        img_res.save("img_res.png")
-        img3.save("img3.png")
-        img2.save("img2.png")
-        img1.save("img1.png")
-        img4.save("img4.png")
+        # # 可选：保存图像到文件
+        # img_res.save("img_res.png")
+        # img3.save("img3.png")
+        # img2.save("img2.png")
+        # img1.save("img1.png")
+        # img4.save("img4.png")
 
-        # 等待用户输入
-        builtins.input("Press Enter to continue...")
+        # # 等待用户输入
+        # builtins.input("Press Enter to continue...")
 
 
 
@@ -328,41 +328,49 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             # compute output
             output = model(input_var)
  
+            from PIL import Image
+            import torchvision.transforms as transforms
+            import builtins
+            img1 = input[0][:3]
+            img2 = input[0][3:]
+            img3 = target[0]
+            img_res = output[0].cpu().detach()
+
+            img1 = img1[[2, 1, 0], :, :]
+            img2 = img2[[2, 1, 0], :, :]
+            img3 = img3[[2, 1, 0], :, :]
+            img_res = img_res[[2, 1, 0], :, :]
+
             # from IPython import embed
             # embed()
 
-            # from PIL import Image
-            # import torchvision.transforms as transforms
-            # import builtins
-            # img1 = input[0][:3]
-            # img2 = input[0][3:]
-            # img3 = target[0]
-            # img_res = output[0].cpu()
+            img4 = np.abs(img_res - img3)
+            # img4 = 0.2989*img4[0]+0.5870*img4[1]+0.1140*img4[2]
 
-            # img1 = img1[[2, 1, 0], :, :]
-            # img2 = img2[[2, 1, 0], :, :]
-            # img3 = img3[[2, 1, 0], :, :]
-            # img_res = img_res[[2, 1, 0], :, :]
 
-           
-            # # 创建一个转换，将张量转换为 PIL.Image 对象
-            # transform = transforms.ToPILImage()
-            # # 将张量转换为 PIL.Image 对象
-            # img_res = transform(img_res) 
-            # img3 = transform(img3)
+            # img4 = tf.normalize(img4, torch.mean(img4, dim=-1, keepdim=True), 
+            #             torch.std(img4, dim=-1, unbiased=True, keepdim=True)
+            #         )
 
-            # img2 = transform(img2)
-            # img1 = transform(img1)
+            # 创建一个转换，将张量转换为 PIL.Image 对象
+            transform = transforms.ToPILImage()
 
-            # # 可选：保存图像到文件
-            # img_res.save("img_res.png")
-            # img3.save("img3.png")
-            # img2.save("img2.png")
-            # img1.save("img1.png")
+            # 将张量转换为 PIL.Image 对象
+            img_res = transform(img_res)
+            img3 = transform(img3)
+            img2 = transform(img2)
+            img1 = transform(img1)
 
-            # # 等待用户输入
-            # builtins.input("Press Enter to continue...")
+            img4 = transform(img4)
 
+            # 可选：保存图像到文件
+            img_res.save("img_res.png")
+            img3.save("img3.png")
+            img2.save("img2.png")
+            img1.save("img1.png")
+            img4.save("img4.png")
+            # 等待用户输入
+            builtins.input("Press Enter to continue...")
 
             loss = criterion(output, target_var)
 
