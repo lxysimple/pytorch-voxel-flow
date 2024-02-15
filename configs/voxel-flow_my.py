@@ -23,7 +23,7 @@ dataset = 'UCF101'
 
 # Training strategry
 train = dict(
-    syn_type="extra",
+
     # batch_size=128,
     batch_size=160,
     optimizer=dict(
@@ -48,7 +48,7 @@ train = dict(
     data_list='/home/xyli/pytorch-voxel-flow/trainlist01_nums_my',
     
     step=3,
-    # syn_type=model['syn_type'],
+    syn_type=model['syn_type'],
     crop_size=[256, 256],
     rotation=[-10, 10],
     crop_policy='random',
@@ -58,15 +58,13 @@ train = dict(
 
 # Testing strategry
 test = dict(
-    syn_type="extra",
-
     batch_size=64,
     # data_list='test_motion',
     # data_list='train_motion',
     data_list='/home/xyli/pytorch-voxel-flow/testlist01_nums_my',
 
     step=3,
-    # syn_type=model['syn_type'],
+    syn_type=model['syn_type'],
     crop_size=[256, 256],
     crop_policy='center',
     scale_factor=[1.07])
