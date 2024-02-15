@@ -81,11 +81,13 @@ class UCF101Test(Dataset):
         # print('self.config.input_mean: ', self.config.input_mean)
         # print('self.config.input_std: ', self.config.input_std)
 
+        from IPython import embed
+        embed()
+        
         for i in range(3):
 
-            from IPython import embed
-            embed()
             
+
             images[i] = tf.normalize(images[i], self.config.input_mean,
                                      self.config.input_std)
 
