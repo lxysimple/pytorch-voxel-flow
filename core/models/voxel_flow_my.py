@@ -235,6 +235,4 @@ class VoxelFlow(nn.Module):
         mask = mask.repeat([1, 3, 1, 1])
 
         x = mask * output_1 + (1.0 - mask) * output_2
-        # x = mask * output_2 + (1.0 - mask) * output_1
-
         return x
