@@ -210,19 +210,22 @@ def train(train_loader, model, optimizer, criterion, epoch):
         img2 = input[0][3:]
         img3 = target[0]
 
-        from IPython import embed
         
-        embed()
-        img4 = img3 - img2
-        img4 = tf.normalize(
-                    img4, 
-                    torch.mean(img4, dim=-1, keepdim=True), 
-                    torch.std(img4, dim=-1, unbiased=True, keepdim=True)
-                )
-        img4 = img4 * 200
 
 
         img_res = output[0].cpu()
+
+        from IPython import embed
+        
+        embed()
+        img4 = img_res - img3
+        img4 = img4.detach()
+
+        # mean1 = [i for i in range(3)]
+        img4 = tf.normalize(img4, torch.mean(img4, dim=-1, keepdim=True), 
+                    torch.std(img4, dim=-1, unbiased=True, keepdim=True)
+                )
+        img4 = img4 * 100
 
         # 创建一个转换，将张量转换为 PIL.Image 对象
         transform = transforms.ToPILImage()
@@ -234,13 +237,14 @@ def train(train_loader, model, optimizer, criterion, epoch):
 
         img4 = transform(img4)
 
+        img4 = img4[0,0]
+
         # 可选：保存图像到文件
         img_res.save("img_res.png")
         img3.save("img3.png")
         img2.save("img2.png")
         img1.save("img1.png")
-
-        
+ 
         img4.save("img4.png")
 
         # 等待用户输入
