@@ -204,23 +204,24 @@ def train(train_loader, model, optimizer, criterion, epoch):
 
 
 
-        from PIL import Image
-        import torchvision.transforms as transforms
-        import builtins
-        img1 = input[0][:3]
-        img2 = input[0][3:]
-        img3 = target[0]
-        img_res = output[0].cpu().detach()
+from PIL import Image
+import torchvision.transforms as transforms
+import builtins
+img1 = input[0][:3]
+img2 = input[0][3:]
+img3 = target[0]
+img_res = output[0].cpu().detach()
 
-        img1 = img1[[2, 1, 0], :, :]
-        img2 = img2[[2, 1, 0], :, :]
-        img3 = img3[[2, 1, 0], :, :]
-        img_res = img_res[[2, 1, 0], :, :]
+img1 = img1[[2, 1, 0], :, :]
+img2 = img2[[2, 1, 0], :, :]
+img3 = img3[[2, 1, 0], :, :]
+img_res = img_res[[2, 1, 0], :, :]
 
-        from IPython import embed
-        embed()
+from IPython import embed
+embed()
 
 img4 = np.abs(img_res - img3)
+img4 = 0.2989*img4[0]+0.5870*img4[1]+0.1140*img4[2]
 
 
 # img4 = tf.normalize(img4, torch.mean(img4, dim=-1, keepdim=True), 
@@ -229,16 +230,14 @@ img4 = np.abs(img_res - img3)
 
 # 创建一个转换，将张量转换为 PIL.Image 对象
 transform = transforms.ToPILImage()
-transform2 = transforms.ToPILImage(mode='L')
+
 # 将张量转换为 PIL.Image 对象
 img_res = transform(img_res)
 img3 = transform(img3)
 img2 = transform(img2)
 img1 = transform(img1)
 
-# 将差异图像转换为灰度图像
-diff_img_gray = Image.fromarray(diff_img.astype(np.uint8), 'L')
-img4 = transform2(img4)
+img4 = transform(img4)
 
 # 可选：保存图像到文件
 img_res.save("img_res.png")
