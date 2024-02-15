@@ -336,6 +336,11 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img3 = target[0]
             img_res = output[0].cpu()
 
+            img1 = img1[:, :, [1, 0, 2]]
+            img2 = img2[:, :, [1, 2, 0]]
+            img3 = img3[:, :, [0, 2, 1]]
+
+
             # 创建一个转换，将张量转换为 PIL.Image 对象
             transform = transforms.ToPILImage()
             # 将张量转换为 PIL.Image 对象
@@ -350,10 +355,6 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img2.save("img2.png")
             img1.save("img1.png")
             
-            pixels = list(img_res.getdata())
-            # 打印图像的像素值
-            print(pixels)
-
             # 等待用户输入
             builtins.input("Press Enter to continue...")
 
