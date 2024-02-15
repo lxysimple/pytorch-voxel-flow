@@ -221,7 +221,7 @@ def train(train_loader, model, optimizer, criterion, epoch):
         # embed()
 
         img4 = np.abs(img_res - img3)
-        img4 = 0.2989*img4[0]+0.5870*img4[1]+0.1140*img4[2]
+        # img4 = 0.2989*img4[0]+0.5870*img4[1]+0.1140*img4[2]
 
 
         # img4 = tf.normalize(img4, torch.mean(img4, dim=-1, keepdim=True), 
