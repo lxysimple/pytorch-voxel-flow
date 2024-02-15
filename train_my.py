@@ -155,7 +155,7 @@ def main():
     for epoch in range(cfg.train.optimizer.args.max_epoch):
 
         # train for one epoch
-        train_loss = 1
+        train_loss = AverageMeter()
         # train_loss = train(train_loader, model, optimizer, criterion, epoch)
 
         # evaluate on validation set
