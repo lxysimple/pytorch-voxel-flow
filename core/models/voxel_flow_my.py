@@ -23,8 +23,8 @@ class VoxelFlow(nn.Module):
         self.config = config
         # self.input_mean = [0.5 * 255, 0.5 * 255, 0.5 * 255]
         # self.input_std = [0.5 * 255, 0.5 * 255, 0.5 * 255]
-        self.mean=[123.675, 116.28, 103.53],
-        self.std=[58.395, 57.12, 57.375],
+        self.input_mean=[123.675, 116.28, 103.53],
+        self.input_std=[58.395, 57.12, 57.375],
 
         self.syn_type = config.syn_type
 
