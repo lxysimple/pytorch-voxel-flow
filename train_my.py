@@ -336,10 +336,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
 # img3 = target[0]
 # img_res = output[0].cpu()
 
-
 # img2 = img2[[2, 1, 0], :, :]
-# img2 = img2*127.5 + 127.5
-
 
 # from IPython import embed
 # embed()
