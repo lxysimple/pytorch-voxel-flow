@@ -155,7 +155,7 @@ def main():
     for epoch in range(cfg.train.optimizer.args.max_epoch):
 
         # train for one epoch
-        train_loss = train(train_loader, model, optimizer, criterion, epoch)
+        # train_loss = train(train_loader, model, optimizer, criterion, epoch)
 #
         # evaluate on validation set
         if ((epoch + 1) % cfg.logging.eval_freq == 0
@@ -327,7 +327,9 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             # compute output
             output = model(input_var)
  
-
+            from IPython import embed
+            embed()
+            
 # from PIL import Image
 # import torchvision.transforms as transforms
 # import builtins
@@ -341,8 +343,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
 # img3 = img3[[2, 1, 0], :, :]
 # img_res = img_res[[2, 1, 0], :, :]
 
-# from IPython import embed
-# embed()
+
             
 # # 创建一个转换，将张量转换为 PIL.Image 对象
 # transform = transforms.ToPILImage()
