@@ -350,7 +350,10 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img2.save("img2.png")
             img1.save("img1.png")
             
-            print(img3)
+            pixels = list(img_res.getdata())
+            # 打印图像的像素值
+            print(pixels)
+
             # 等待用户输入
             builtins.input("Press Enter to continue...")
 
