@@ -62,9 +62,9 @@ class UCF101(Dataset):
             
             images.append(img)
 
-        # # flip
-        # if hasattr(self.config, 'flip') and self.config.flip:
-        #     images = tf.group_random_flip(images)
+        # flip
+        if hasattr(self.config, 'flip') and self.config.flip:
+            images = tf.group_random_flip(images)
 
         # target_size = self.config.crop_size
         # # resize
@@ -73,11 +73,12 @@ class UCF101(Dataset):
         #     0, [cv2.INTER_LINEAR for _ in range(self.config.step)],
         #     dsize=target_size)
 
-        # if hasattr(self.config, 'rotation') and random.random() < 0.5:
-        #     images = tf.group_rotation(
-        #         images, self.config.rotation,
-        #         [cv2.INTER_LINEAR for _ in range(self.config.step)],
-        #         [self.config.input_mean for _ in range(self.config.step)])
+        if hasattr(self.config, 'rotation') and random.random() < 0.5:
+            images = tf.group_rotation(
+                images, self.config.rotation,
+                [cv2.INTER_LINEAR for _ in range(self.config.step)],
+                [self.config.input_mean for _ in range(self.config.step)])
+            
         # # blur
         # if hasattr(self.config,
         #            'blur') and self.config.blur and random.random() < 0.5:
