@@ -86,11 +86,11 @@ class UCF101(Dataset):
 
         # norm
         for i in range(self.config.step):
-            # images[i] = tf.normalize(images[i], self.config.input_mean,
-            #                          self.config.input_std)
+            images[i] = tf.normalize(images[i], self.config.input_mean,
+                                     self.config.input_std)
             images[i] = torch.from_numpy(images[i]).permute(
                 2, 0, 1).contiguous().float()
-            images[i] = tf.min_max_normalization(images[i])
+            # images[i] = tf.min_max_normalization(images[i])
 
         # print('self.config', self.config)
         if self.config.syn_type == 'inter':
