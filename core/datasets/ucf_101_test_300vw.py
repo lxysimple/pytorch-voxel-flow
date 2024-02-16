@@ -37,7 +37,7 @@ class UCF101Test(Dataset):
         video_dir = self.img_list[idx][0]
         frames_num = self.img_list[idx][1]
         # frame_idx = random.randint(4, frames_num - 4) # 不同epoch的样本各不相同
-        frame_idx = 0
+        frame_idx = 1
 
         images = []
         # for i in range(3):
