@@ -151,7 +151,9 @@ def main():
 
     # define loss function (criterion) optimizer and evaluator
     criterion = torch.nn.MSELoss().cuda()
-    evaluator = EvalPSNR(255.0 / np.mean(cfg.test.input_std))
+    # evaluator = EvalPSNR(255.0 / np.mean(cfg.test.input_std))
+    evaluator = EvalPSNR(255.0)
+
 
     # PSNR = validate(val_loader, model, optimizer, criterion, evaluator)
     # return
