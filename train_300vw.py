@@ -254,17 +254,6 @@ def train(train_loader, model, optimizer, criterion, epoch):
         # builtins.input("Press Enter to continue...")
 
 
-
-
-
-
-
-
-
-
-
-
-
         loss = criterion(output, target_var)
 
         # measure accuracy and record loss
@@ -279,7 +268,8 @@ def train(train_loader, model, optimizer, criterion, epoch):
         batch_time.update(time.time() - end)
         end = time.time()
 
-        if (i + 1) % cfg.logging.print_freq == 0:
+        # if (i + 1) % cfg.logging.print_freq == 0:
+        if (i + 1) % 1 == 0:
             print(('Epoch: [{0}][{1}/{2}], lr: {lr:.5f}\t'
                    'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                    'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
