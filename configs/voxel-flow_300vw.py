@@ -26,7 +26,7 @@ dataset = 'UCF101'
 train = dict(
 
     # batch_size=128,
-    batch_size=100, # 300vw最多50个训练视频
+    batch_size=136, # 300vw最多50个训练视频
     optimizer=dict(
         algorithm='ADAM',
         args=dict(
