@@ -46,7 +46,7 @@ train = dict(
     ),
 
     # data_list='train_motion',
-    data_list='/home/xyli/pytorch-voxel-flow/trainlist_nums_300vw.txt',
+    data_list='/home/xyli/pytorch-voxel-flow/trainlist_nums_300vw',
     
     step=3,
     syn_type=model['syn_type'],
@@ -62,7 +62,7 @@ test = dict(
     batch_size=50,
     # data_list='test_motion',
     # data_list='train_motion',
-    data_list='/home/xyli/pytorch-voxel-flow/trainlist_nums_300vw.txt',
+    data_list='/home/xyli/pytorch-voxel-flow/trainlist_nums_300vw',
 
     step=3,
     syn_type=model['syn_type'],
