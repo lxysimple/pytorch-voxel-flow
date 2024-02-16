@@ -10,6 +10,11 @@
 # # 输出文件路径
 # output_file = "trainlist01_my.txt"
 
+# # 输入文件路径
+# input_file = "/home/xyli/pytorch-voxel-flow/data/ucf-101/annotations/testlist01.txt"
+# # 输出文件路径
+# output_file = "testlist01_my.txt"
+
 # 输入文件路径
 input_file = "/home/xyli/pytorch-voxel-flow/data/ucf-101/annotations/testlist01.txt"
 # 输出文件路径
