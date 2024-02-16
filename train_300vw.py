@@ -29,6 +29,10 @@ from torch.nn.parallel import DataParallel # 单机多卡的分布式训练（�
 
 from core.utils import transforms as tf
 
+from PIL import Image
+import torchvision.transforms as transforms
+import builtins
+
 best_PSNR = 0
 
 
@@ -328,9 +332,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             # compute output
             output = model(input_var)
  
-            from PIL import Image
-            import torchvision.transforms as transforms
-            import builtins
+            
             img1 = input[0][:3]
             img2 = input[0][3:]
             img3 = target[0]
@@ -343,14 +345,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
 
             # from IPython import embed
             # embed()
-
             img4 = np.abs(img_res - img3)
-            # img4 = 0.2989*img4[0]+0.5870*img4[1]+0.1140*img4[2]
-
-
-            # img4 = tf.normalize(img4, torch.mean(img4, dim=-1, keepdim=True), 
-            #             torch.std(img4, dim=-1, unbiased=True, keepdim=True)
-            #         )
 
             # 创建一个转换，将张量转换为 PIL.Image 对象
             transform = transforms.ToPILImage()
@@ -369,8 +364,8 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             img2.save("img2.png")
             img1.save("img1.png")
             img4.save("img4.png")
-            # 等待用户输入
-            builtins.input("Press Enter to continue...")
+            # # 等待用户输入
+            # builtins.input("Press Enter to continue...")
 
             loss = criterion(output, target_var)
 
