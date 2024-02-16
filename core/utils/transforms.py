@@ -276,3 +276,12 @@ def min_max_normalization(x: torch.Tensor) -> torch.Tensor:
     # 进行最小-最大归一化处理
     x = (x - min_) / (max_ - min_ + 1e-9)
     return x.reshape(shape)
+
+def normalization_300vw(x: torch.Tensor) -> torch.Tensor:
+    # 将 0 值映射到 [-1, 0] 范围内
+    x[x == 0] = -1
+
+    # 将 255 值映射到 [0, 1] 范围内
+    x[x == 255] = 1
+
+    return x

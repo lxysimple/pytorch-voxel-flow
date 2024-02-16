@@ -90,7 +90,9 @@ class UCF101(Dataset):
             #                          self.config.input_std)
             images[i] = torch.from_numpy(images[i]).permute(
                 2, 0, 1).contiguous().float()
-            images[i] = tf.min_max_normalization(images[i])
+            # images[i] = tf.min_max_normalization(images[i])
+            images[i] = tf.normalization_300vw(images[i])
+
 
         # print('self.config', self.config)
         if self.config.syn_type == 'inter':
