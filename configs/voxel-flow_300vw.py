@@ -26,7 +26,7 @@ dataset = 'UCF101'
 train = dict(
 
     # batch_size=128,
-    batch_size=160,
+    batch_size=50, # 300vw最多50个训练视频
     optimizer=dict(
         algorithm='ADAM',
         args=dict(
@@ -41,12 +41,12 @@ train = dict(
             # rate_decay_factor=0.1,
             # rate_decay_step=400,
 
-            max_epoch=20 # 400
+            max_epoch=2000 # 400
         )
     ),
 
     # data_list='train_motion',
-    data_list='/home/xyli/pytorch-voxel-flow/trainlist01_nums_my',
+    data_list='/home/xyli/pytorch-voxel-flow/trainlist_nums_300vw.txt',
     
     step=3,
     syn_type=model['syn_type'],
@@ -59,10 +59,10 @@ train = dict(
 
 # Testing strategry
 test = dict(
-    batch_size=64,
+    batch_size=50,
     # data_list='test_motion',
     # data_list='train_motion',
-    data_list='/home/xyli/pytorch-voxel-flow/',
+    data_list='/home/xyli/pytorch-voxel-flow/trainlist_nums_300vw.txt',
 
     step=3,
     syn_type=model['syn_type'],
@@ -74,4 +74,4 @@ test = dict(
 output_dir = 'outputs'
 snapshot_pref = 'voxelflow'
 # logging = dict(log_dir='', print_freq=50, eval_freq=1)
-logging = dict(log_dir='', print_freq=40, eval_freq=1)
+logging = dict(log_dir='', print_freq=40, eval_freq=10) # 每10个epoch保存模型
