@@ -17,7 +17,7 @@ sys.path.append('core/models')
 from voxel_flow_my import VoxelFlow
 
 sys.path.append('core/datasets')
-from ucf_101_my import UCF101
+from ucf_101_300vw import UCF101
 from ucf_101_test_300vw import UCF101Test
 
 sys.path.append('core/utils')
