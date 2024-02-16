@@ -27,7 +27,7 @@ train = dict(
 
     # batch_size=128,
 
-    batch_size=50, 
+    batch_size=136, 
 
     optimizer=dict(
         algorithm='ADAM',
