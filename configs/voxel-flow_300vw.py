@@ -13,7 +13,7 @@ model = dict(
 
 device = [0, 1, 2, 3, 4, 5, 6, 7]
 
-resume = 'outputs/voxelflow_120_tloss0.017_vloss0.019_PSNR23.999.pth.tar'
+resume = 'outputs/voxelflow_210_tloss0.018_vloss0.019_PSNR23.856.pth.tar'
 # resume = 'voxelflow_finetune_model_best.pth.tar'
 
 # resume = ''
