@@ -62,9 +62,9 @@ class UCF101(Dataset):
             
             images.append(img)
 
-        # flip
-        if hasattr(self.config, 'flip') and self.config.flip:
-            images = tf.group_random_flip(images)
+        # # flip
+        # if hasattr(self.config, 'flip') and self.config.flip:
+        #     images = tf.group_random_flip(images)
 
         # target_size = self.config.crop_size
         # # resize
