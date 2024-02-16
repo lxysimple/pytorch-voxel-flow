@@ -323,12 +323,15 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
 
             # compute output
             output = model(input_var)
- 
+
+            from IPython import embed
+            embed()
+            index = 0
             
-            img1 = input[0][:3]
-            img2 = input[0][3:]
-            img3 = target[0]
-            img_res = output[0].cpu().detach()
+            img1 = input[index][:3]
+            img2 = input[index][3:]
+            img3 = target[index]
+            img_res = output[index].cpu().detach()
 
             img1 = img1[[2, 1, 0], :, :]
             img2 = img2[[2, 1, 0], :, :]
