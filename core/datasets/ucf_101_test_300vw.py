@@ -53,7 +53,7 @@ class UCF101Test(Dataset):
             
             img = cv2.imread(
                         os.path.join(
-                            video_dir,'img_{0:05d}.jpg'.format(frame_idx + i)
+                            video_dir,'{0:06d}.png'.format(frame_idx + i)
                         )
                   ).astype(np.float32)
             
