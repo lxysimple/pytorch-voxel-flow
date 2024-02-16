@@ -41,7 +41,7 @@ train = dict(
             # rate_decay_factor=0.1,
             # rate_decay_step=400,
 
-            max_epoch=2000 # 400
+            max_epoch=1000 # 400
         )
     ),
 
@@ -74,4 +74,4 @@ test = dict(
 output_dir = 'outputs'
 snapshot_pref = 'voxelflow'
 # logging = dict(log_dir='', print_freq=50, eval_freq=1)
-logging = dict(log_dir='', print_freq=40, eval_freq=10) # 每10个epoch保存模型
+logging = dict(log_dir='', print_freq=40, eval_freq=10) # 每10个epoch验证+保存模型
