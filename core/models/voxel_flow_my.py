@@ -33,31 +33,38 @@ class VoxelFlow(nn.Module):
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
         self.conv1 = nn.Conv2d(
             6, 64, kernel_size=5, stride=1, padding=2, bias=False)
-        self.conv1_bn = BatchNorm2d(64, **bn_param)
+        # self.conv1_bn = BatchNorm2d(64, **bn_param)
+        self.conv1_bn = BatchNorm2d(64)
 
         self.conv2 = nn.Conv2d(
             64, 128, kernel_size=5, stride=1, padding=2, bias=False)
-        self.conv2_bn = BatchNorm2d(128, **bn_param)
+        # self.conv2_bn = BatchNorm2d(128, **bn_param)
+        self.conv2_bn = BatchNorm2d(128)
 
         self.conv3 = nn.Conv2d(
             128, 256, kernel_size=3, stride=1, padding=1, bias=False)
-        self.conv3_bn = BatchNorm2d(256, **bn_param)
+        # self.conv3_bn = BatchNorm2d(256, **bn_param)
+        self.conv3_bn = BatchNorm2d(256)
 
         self.bottleneck = nn.Conv2d(
             256, 256, kernel_size=3, stride=1, padding=1, bias=False)
-        self.bottleneck_bn = BatchNorm2d(256, **bn_param)
+        # self.bottleneck_bn = BatchNorm2d(256, **bn_param)
+        self.bottleneck_bn = BatchNorm2d(256)
 
         self.deconv1 = nn.Conv2d(
             512, 256, kernel_size=3, stride=1, padding=1, bias=False)
-        self.deconv1_bn = BatchNorm2d(256, **bn_param)
+        # self.deconv1_bn = BatchNorm2d(256, **bn_param)
+        self.deconv1_bn = BatchNorm2d(256)
 
         self.deconv2 = nn.Conv2d(
             384, 128, kernel_size=5, stride=1, padding=2, bias=False)
-        self.deconv2_bn = BatchNorm2d(128, **bn_param)
+        # self.deconv2_bn = BatchNorm2d(128, **bn_param)
+        self.deconv2_bn = BatchNorm2d(128)
 
         self.deconv3 = nn.Conv2d(
             192, 64, kernel_size=5, stride=1, padding=2, bias=False)
-        self.deconv3_bn = BatchNorm2d(64, **bn_param)
+        # self.deconv3_bn = BatchNorm2d(64, **bn_param)
+        self.deconv3_bn = BatchNorm2d(64)
 
         self.conv4 = nn.Conv2d(64, 3, kernel_size=5, stride=1, padding=2)
 
