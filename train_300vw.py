@@ -14,7 +14,7 @@ from core.utils.config import Config
 
 import sys
 sys.path.append('core/models')
-from voxel_flow_my import VoxelFlow
+from voxel_flow_300vw import VoxelFlow
 
 sys.path.append('core/datasets')
 from ucf_101_300vw import UCF101
