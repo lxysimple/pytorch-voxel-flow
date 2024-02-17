@@ -50,27 +50,11 @@ def parse_args():
     args = parser.parse_args()
     return args
 
-class DiceLoss(nn.Module):
-    def __init__(self, weight=None, size_average=True):
-        super(DiceLoss, self).__init__()
-
-    def forward(self, inputs, targets, smooth=1):
-        
-        # 如果你的模型包含 sigmoid 或等效的激活层，请注释掉下面这行
-        inputs = inputs.sigmoid()   
-        
-        # 将标签和预测张量展平
-        inputs = inputs.view(-1)
-        targets = targets.view(-1)
-        
-        # 计算交集
-        intersection = (inputs * targets).sum()                            
-        
-        # 计算 Dice 系数
-        dice = (2. * intersection + smooth) / (inputs.sum() + targets.sum() + smooth)  
-        
-        # 返回 Dice 损失
-        return 1 - dice
+def criterion(predicted, target):
+    intersection = torch.sum(predicted & target)
+    union = torch.sum(predicted | target)
+    iou = 1 - (intersection + 1) / (union + 1)  # 添加平滑项，避免除零错误
+    return iou
 
 def main():
     global cfg, best_PSNR
@@ -174,7 +158,7 @@ def main():
     
     # define loss function (criterion) optimizer and evaluator
     # criterion = torch.nn.MSELoss().cuda()
-    criterion = DiceLoss()
+    # criterion = iou_loss()
 
     # evaluator = EvalPSNR(255.0 / np.mean(cfg.test.input_std))
     evaluator = EvalPSNR(255.0)
