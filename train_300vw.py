@@ -59,9 +59,9 @@ def criterion(output, target_var):
     loss_mse = criterion_mse(output, target_var)
     loss_jac = criterion_jac(output, target_var)
 
-    loss = loss_mse + loss_jac
+    loss = loss_mse + loss_jac/5.0
 
-    return loss/2
+    return loss
 
 
 def main():
