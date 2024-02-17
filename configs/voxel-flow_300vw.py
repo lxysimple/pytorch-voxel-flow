@@ -36,7 +36,7 @@ train = dict(
             base_lr=1e-4,
 
             # momentum=0.9,
-            weight_decay=1e-5,
+            weight_decay=1e-4,
             # policy='poly_epoch',
             # learning_power=0.9,
             # policy='step',
