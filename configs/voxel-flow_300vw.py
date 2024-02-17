@@ -16,7 +16,7 @@ device = [0, 1, 2, 3, 4, 5, 6, 7]
 # resume = 'voxelflow_260_tloss0.016_vloss0.018_PSNR66.169.pth.tar'
 resume = 'voxelflow_finetune_model_best.pth.tar'
 
-resume = ''
+# resume = ''
 weight = ''
 dataset = 'UCF101'
 # dataset = 'ucf-101'
