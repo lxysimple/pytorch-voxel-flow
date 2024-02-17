@@ -3,8 +3,8 @@ model = dict(
     name="VoxelFlow",
     syn_type="extra",
     bn_param=dict(momentum=0.9997),
-    # bn_training=True,
-    bn_training=False,
+    bn_training=True,
+    # bn_training=False,
     bn_parallel=False,
     mult_conv_w=[1, 1],  # lr, decay
     mult_conv_b=[2, 0],  # lr, decay
