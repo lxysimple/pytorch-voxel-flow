@@ -35,6 +35,7 @@ import builtins
 
 best_PSNR = 0
 
+import torch.nn as nn
 
 def parse_args():
     """ 
