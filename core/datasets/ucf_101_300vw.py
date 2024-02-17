@@ -79,10 +79,10 @@ class UCF101(Dataset):
                 [cv2.INTER_LINEAR for _ in range(self.config.step)],
                 [self.config.input_mean for _ in range(self.config.step)])
             
-        # # blur
-        # if hasattr(self.config,
-        #            'blur') and self.config.blur and random.random() < 0.5:
-        #     images = tf.blur(images)
+        # blur
+        if hasattr(self.config,
+                   'blur') and self.config.blur and random.random() < 0.5:
+            images = tf.blur(images)
 
         # norm
         for i in range(self.config.step):
