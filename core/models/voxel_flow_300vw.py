@@ -66,8 +66,8 @@ class VoxelFlow(nn.Module):
         # self.deconv3_bn = BatchNorm2d(64, **bn_param)
         self.deconv3_bn = BatchNorm2d(64)
 
-        # self.conv4 = nn.Conv2d(64, 3, kernel_size=5, stride=1, padding=2)
-        self.conv4 = nn.Conv2d(64, 2, kernel_size=5, stride=1, padding=2)
+        self.conv4 = nn.Conv2d(64, 3, kernel_size=5, stride=1, padding=2)
+        # self.conv4 = nn.Conv2d(64, 2, kernel_size=5, stride=1, padding=2)
 
 
         for m in self.modules():
@@ -198,8 +198,8 @@ class VoxelFlow(nn.Module):
         x = nn.functional.tanh(x)
 
         flow = x[:, 0:2, :, :] 
-        # # 可能是识别和提取视频中的运动区域，或是第1帧+光流预测图所占权重
-        # mask = x[:, 2:3, :, :]
+        # 可能是识别和提取视频中的运动区域，或是第1帧+光流预测图所占权重
+        mask = x[:, 2:3, :, :]
 
         # grid_x：表示每个像素在 x 轴上的坐标值，从左到右依次递增。
         # grid_y：表示每个像素在 y 轴上的坐标值，从上到下依次递增。
@@ -210,8 +210,8 @@ class VoxelFlow(nn.Module):
             grid_y = torch.autograd.Variable(
                 grid_y.repeat([input.size()[0], 1, 1])).cuda()
 
-        # flow = 0.5 * flow
-        flow =  flow # 正方向默认是减去光流值表示像素移动
+        flow = 0.5 * flow
+        # flow =  flow # 正方向默认是减去光流值表示像素移动
 
         if self.syn_type == 'inter':
             coor_x_1 = grid_x - flow[:, 0, :, :]
@@ -227,11 +227,11 @@ class VoxelFlow(nn.Module):
         else:
             raise ValueError('Unknown syn_type ' + self.syn_type)
 
-        # # 将光流产生的变化应用到第1个图
-        # output_1 = torch.nn.functional.grid_sample(
-        #     input[:, 0:3, :, :],
-        #     torch.stack([coor_x_1, coor_y_1], dim=3),
-        #     padding_mode='border')
+        # 将光流产生的变化应用到第1个图
+        output_1 = torch.nn.functional.grid_sample(
+            input[:, 0:3, :, :],
+            torch.stack([coor_x_1, coor_y_1], dim=3),
+            padding_mode='border')
 
         # 将光流产生的变化应用到第2个图
         output_2 = torch.nn.functional.grid_sample(
@@ -239,12 +239,12 @@ class VoxelFlow(nn.Module):
             torch.stack([coor_x_2, coor_y_2], dim=3),
             padding_mode='border')
 
-        # # 将 mask 中的像素值从原来的 [0, 1] 区间缩放到 [0.5, 1.0] 区间
-        # # 使其更好地融合背景
-        # mask = 0.5 * (1.0 + mask)
-        # mask = mask.repeat([1, 3, 1, 1])
+        # 将 mask 中的像素值从原来的 [0, 1] 区间缩放到 [0.5, 1.0] 区间
+        # 使其更好地融合背景
+        mask = 0.5 * (1.0 + mask)
+        mask = mask.repeat([1, 3, 1, 1])
 
-        # x = mask * output_1 + (1.0 - mask) * output_2
-        x = output_2
+        x = mask * output_1 + (1.0 - mask) * output_2
+        # x = output_2
 
         return x
