@@ -342,8 +342,8 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             # compute output
             output = model(input_var)
 
-            # from IPython import embed
-            # embed()
+            from IPython import embed
+            embed()
             index = 31
 
             img1 = input[index][:3]
