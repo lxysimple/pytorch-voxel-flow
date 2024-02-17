@@ -153,8 +153,8 @@ def main():
     
     # define loss function (criterion) optimizer and evaluator
     # criterion = torch.nn.MSELoss().cuda()
-    criterion = torch.nn.L1Loss
-    criterion.cuda()
+    criterion = torch.nn.L1Loss().cuda()
+
 
     # evaluator = EvalPSNR(255.0 / np.mean(cfg.test.input_std))
     evaluator = EvalPSNR(255.0)
