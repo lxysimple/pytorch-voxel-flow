@@ -51,17 +51,17 @@ def parse_args():
     args = parser.parse_args()
     return args
 
-def criterion(output, target_var):
+# def criterion(output, target_var):
 
-    criterion_mse = torch.nn.MSELoss().cuda()
-    criterion_jac = smp.losses.JaccardLoss('binary').cuda()
+#     criterion_mse = torch.nn.MSELoss().cuda()
+#     criterion_jac = smp.losses.JaccardLoss('binary').cuda()
 
-    loss_mse = criterion_mse(output, target_var)
-    loss_jac = criterion_jac(output, target_var)
+#     loss_mse = criterion_mse(output, target_var)
+#     loss_jac = criterion_jac(output, target_var)
 
-    loss = loss_mse + loss_jac/2.0
+#     loss = loss_mse + loss_jac/20.0
 
-    return loss
+#     return loss
 
 
 def main():
@@ -165,8 +165,8 @@ def main():
 
     
     # define loss function (criterion) optimizer and evaluator
-    # criterion_mse = torch.nn.MSELoss().cuda()
-    # criterion_jac = smp.losses.JaccardLoss('binary').cuda()
+    criterion = torch.nn.MSELoss().cuda()
+
 
 
     # evaluator = EvalPSNR(255.0 / np.mean(cfg.test.input_std))
