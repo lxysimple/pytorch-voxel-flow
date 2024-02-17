@@ -154,8 +154,8 @@ def main():
 
     
     # define loss function (criterion) optimizer and evaluator
-    # criterion = torch.nn.MSELoss().cuda()
-    criterion = smp.losses.JaccardLoss('binary').cuda()
+    criterion_mse = torch.nn.MSELoss().cuda()
+    criterion_jac = smp.losses.JaccardLoss('binary').cuda()
 
 
     # evaluator = EvalPSNR(255.0 / np.mean(cfg.test.input_std))
@@ -262,8 +262,10 @@ def train(train_loader, model, optimizer, criterion, epoch):
         # # 等待用户输入
         # builtins.input("Press Enter to continue...")
 
-
-        loss = criterion(output, target_var)
+        loss_mse = criterion_mse(output, target_var)
+        loss_jac = criterion_jac(output, target_var)
+        loss = loss_mse + loss_jac/5.0
+        # loss = criterion(output, target_var)
 
         # measure accuracy and record loss
         losses.update(loss.item(), input.size(0))
