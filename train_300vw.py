@@ -50,7 +50,12 @@ def parse_args():
     args = parser.parse_args()
     return args
 
+
 def criterion(predicted, target):
+    # 将预测结果和真实结果转换为整数类型
+    predicted = predicted.type(torch.int)
+    target = target.type(torch.int)
+    
     intersection = torch.sum(predicted & target)
     union = torch.sum(predicted | target)
     iou = 1 - (intersection + 1) / (union + 1)  # 添加平滑项，避免除零错误
