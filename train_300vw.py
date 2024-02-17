@@ -51,15 +51,6 @@ def parse_args():
     return args
 
 
-def criterion(predicted, target):
-    # 将预测结果和真实结果转换为整数类型
-    predicted = predicted.type(torch.int)
-    target = target.type(torch.int)
-    
-    intersection = torch.sum(predicted & target)
-    union = torch.sum(predicted | target)
-    iou = 1 - (intersection + 1) / (union + 1)  # 添加平滑项，避免除零错误
-    return iou
 
 def main():
     global cfg, best_PSNR
@@ -163,7 +154,7 @@ def main():
     
     # define loss function (criterion) optimizer and evaluator
     # criterion = torch.nn.MSELoss().cuda()
-    # criterion = iou_loss()
+    criterion = nn.L1Loss
 
     # evaluator = EvalPSNR(255.0 / np.mean(cfg.test.input_std))
     evaluator = EvalPSNR(255.0)
