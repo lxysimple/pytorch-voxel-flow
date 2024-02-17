@@ -33,6 +33,8 @@ from PIL import Image
 import torchvision.transforms as transforms
 import builtins
 
+import segmentation_models_pytorch as smp
+
 best_PSNR = 0
 
 
@@ -153,7 +155,7 @@ def main():
     
     # define loss function (criterion) optimizer and evaluator
     # criterion = torch.nn.MSELoss().cuda()
-    criterion = torch.nn.L1Loss().cuda()
+    criterion = smp.losses.MCCLoss().cuda()
 
 
     # evaluator = EvalPSNR(255.0 / np.mean(cfg.test.input_std))
