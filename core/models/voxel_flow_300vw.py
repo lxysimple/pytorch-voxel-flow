@@ -5,7 +5,8 @@ from torch import nn
 
 from torch.nn import BatchNorm2d
 
-def meshgrid(height, width):
+def meshgrid(height, width): 
+    # 取均值分布可能是为了更好的观察模型的精度变化
     x_t = torch.matmul(
         torch.ones(height, 1), torch.linspace(-1.0, 1.0, width).view(1, width))
     y_t = torch.matmul(
