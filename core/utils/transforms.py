@@ -291,9 +291,9 @@ def min_max_normalization_1d(x: torch.Tensor) -> torch.Tensor:
     keypoints_y = []
     for j in range(68*2):
         if j%2 == 0:
-            keypoints_x.append(keypoints[j])
+            keypoints_x.append(x[j])
         else:
-            keypoints_y.append(keypoints[j])
+            keypoints_y.append(x[j])
                     
     x_left = min(keypoints_x)  
     x_right = max(keypoints_x) 
