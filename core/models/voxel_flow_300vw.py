@@ -290,8 +290,8 @@ class VoxelFlow(nn.Module):
         
 
         
-        output_1 = input[:, 0：1, :] - flow[:, 0：1, :] * 2 
-        output_2 = input[:, 1：2, :] - flow[:, 0：1, :] 
+        output_1 = input[:, 0:1, :] - flow[:, 0:1, :] * 2 
+        output_2 = input[:, 1:2, :] - flow[:, 0:1, :] 
 
 
         # 将 mask 中的像素值从原来的 [0, 1] 区间缩放到 [0.5, 1.0] 区间
