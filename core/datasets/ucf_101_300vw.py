@@ -97,36 +97,41 @@ class UCF101(Dataset):
             #             )
             #       ).astype(np.float32)
             
+            img = _keypoint_from_pts_( 
+                os.path.join(
+                            video_dir,'{0:06d}.pts'.format(frame_idx + i)
+                        )
+            )
             images.append(img)
 
-        # flip
-        if hasattr(self.config, 'flip') and self.config.flip:
-            images = tf.group_random_flip(images)
+        # # flip
+        # if hasattr(self.config, 'flip') and self.config.flip:
+        #     images = tf.group_random_flip(images)
 
-        target_size = self.config.crop_size
-        # resize
-        images = tf.group_rescale(
-            images,
-            0, [cv2.INTER_LINEAR for _ in range(self.config.step)],
-            dsize=target_size)
+        # target_size = self.config.crop_size
+        # # resize
+        # images = tf.group_rescale(
+        #     images,
+        #     0, [cv2.INTER_LINEAR for _ in range(self.config.step)],
+        #     dsize=target_size)
 
-        if hasattr(self.config, 'rotation') and random.random() < 0.5:
-            images = tf.group_rotation(
-                images, self.config.rotation,
-                [cv2.INTER_LINEAR for _ in range(self.config.step)],
-                [self.config.input_mean for _ in range(self.config.step)])
+        # if hasattr(self.config, 'rotation') and random.random() < 0.5:
+        #     images = tf.group_rotation(
+        #         images, self.config.rotation,
+        #         [cv2.INTER_LINEAR for _ in range(self.config.step)],
+        #         [self.config.input_mean for _ in range(self.config.step)])
             
-        # blur
-        if hasattr(self.config,
-                   'blur') and self.config.blur and random.random() < 0.5:
-            images = tf.blur(images)
+        # # blur
+        # if hasattr(self.config,
+        #            'blur') and self.config.blur and random.random() < 0.5:
+        #     images = tf.blur(images)
 
         # norm
         for i in range(self.config.step):
             # images[i] = tf.normalize(images[i], self.config.input_mean,
             #                          self.config.input_std)
-            images[i] = torch.from_numpy(images[i]).permute(
-                2, 0, 1).contiguous().float()
+            # images[i] = torch.from_numpy(images[i]).permute(
+            #     2, 0, 1).contiguous().float()
             images[i] = tf.min_max_normalization(images[i])
 
 
