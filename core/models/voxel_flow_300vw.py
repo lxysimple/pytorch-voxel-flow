@@ -222,8 +222,8 @@ class VoxelFlow(nn.Module):
         # flow = x[:, 0:2, :, :] 
         # # 可能是识别和提取视频中的运动区域，或是第1帧+光流预测图所占权重
         # mask = x[:, 2:3, :, :]
-        flow = x[:, 0, :] 
-        mask = x[:, 1, :]
+        flow = x[:, 0:, :] # 多加一个:保证是3维张量
+        mask = x[:, 1:, :]
 
         # # grid_x：表示每个像素在 x 轴上的坐标值，从左到右依次递增。
         # # grid_y：表示每个像素在 y 轴上的坐标值，从上到下依次递增。
@@ -261,8 +261,8 @@ class VoxelFlow(nn.Module):
         #     coor_x_2 = grid_x - flow[:, 0, :, :] 
         #     coor_y_2 = grid_y - flow[:, 1, :, :] 
 
-        print('grid_x.shape： ', grid_x.shape)
-        print('flow.shape： ', flow.shape)
+        # print('grid_x.shape： ', grid_x.shape)
+        # print('flow.shape： ', flow.shape)
 
         if self.syn_type == 'extra':
             coor_x_1 = grid_x - flow * 2
