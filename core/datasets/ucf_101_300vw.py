@@ -102,7 +102,7 @@ class UCF101(Dataset):
                             video_dir,'{0:06d}.pts'.format(frame_idx + i)
                         )
             )
-            print(len(img))
+            
             images.append(img)
 
         # # flip
