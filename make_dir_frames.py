@@ -16,8 +16,8 @@ import os
 # input_file = "/home/xyli/pytorch-voxel-flow/trainlist_300vw.txt"
 # output_file = "/home/xyli/pytorch-voxel-flow/trainlist_nums_300vw.txt"
 
-input_file = '/home/xyli/data/300VW_Dataset_2015_12_14'
-output_file = '/home/xyli/data/300VW_Dataset_2015_12_14/trainlist_300vw_68_nums.txt'
+input_file = '/home/xyli/pytorch-voxel-flow/trainlist_300vw_68.txt'
+output_file = '/home/xyli/pytorch-voxel-flow/trainlist_300vw_68_nums.txt'
 
 # 打开输入文件和输出文件
 with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out:
