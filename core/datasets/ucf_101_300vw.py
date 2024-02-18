@@ -128,7 +128,7 @@ class UCF101(Dataset):
             #     2, 0, 1).contiguous().float()
 
             images[i] = torch.from_numpy(np.array(images[i])).float()
-            print("images[i].shape: ", images[i].shape)
+            # print("images[i].shape: ", images[i].shape)
             images[i] = tf.min_max_normalization_1d(images[i])
 
 
@@ -144,7 +144,7 @@ class UCF101(Dataset):
             
 
         if self.config.syn_type == 'extra':
-            images[0] = torch.unsqueeze(images[0], 0)
+            images[0] = torch.unsqueeze(images[0], 0) # (1, 136)
             images[1] = torch.unsqueeze(images[1], 0)
             images[2] = torch.unsqueeze(images[2], 0)
 
