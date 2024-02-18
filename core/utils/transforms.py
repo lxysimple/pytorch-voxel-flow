@@ -278,7 +278,7 @@ def min_max_normalization(x: torch.Tensor) -> torch.Tensor:
     return x.reshape(shape)
 
 
-def min_max_normalization_1d(x: torch.Tensor) -> torch.Tensor:
+def min_max_normalization_1d(x):
     """最小-最大归一化函数
 
     参数:
