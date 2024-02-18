@@ -429,7 +429,11 @@ def validate(val_loader, model, optimizer, criterion):
             img3 = cv2.imread('img3.png')
             img_res = cv2.imread('img_res.png') 
             img4 = np.abs(img3-img_res)
+            # 将 NumPy 数组转换为 Pillow 图像对象
+            img4 = Image.fromarray(img4)
+            # 保存图像
             img4.save("img4.png")
+
 
 
             # img1 = img1[[2, 1, 0], :, :]
