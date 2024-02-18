@@ -99,6 +99,15 @@ class VoxelFlow(nn.Module):
             elif isinstance(m, BatchNorm1d):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
+        
+
+        # 定义隐藏层
+        self.hidden_layer1 = nn.Linear(68*2*2, 68)
+        self.hidden_layer2 = nn.Linear(68, 17)
+        self.hidden_layer3 = nn.Linear(17, 68)
+        self.hidden_layer4 = nn.Linear(68, 68*2*2)
+
+
 
     def train(self, mode=True):
         """
@@ -158,7 +167,7 @@ class VoxelFlow(nn.Module):
             },
         ]
 
-    def forward(self, x, syn_type='inter'):
+    def forward2(self, x, syn_type='inter'):
         input = x
         # input_size = tuple(x.size()[2:4])
         input_size = x.size()[2]
@@ -313,3 +322,34 @@ class VoxelFlow(nn.Module):
 
         # (b, 1, 68)
         return x
+
+    def forward(self, x, syn_type='inter'):
+        input = x.clone() # (b, 2, 136)
+
+        # 展平输入
+        x = x.view(x.size(0), -1)
+        
+        # 前向传播通过隐藏层
+        x = torch.relu(self.hidden_layer1(x))
+        x = torch.relu(self.hidden_layer2(x))
+        x = torch.relu(self.hidden_layer3(x))
+        x = torch.relu(self.hidden_layer4(x))
+
+                
+        # 前向传播通过输出层
+        x = self.output_layer(x)
+
+        # 重新形状成 (b, 2, 136)
+        x = x.view(x.size(0), 2, -1)
+
+        flow = x[:, 0:1, :] # 多加一个:保证是3维张量
+        mask = x[:, 1:2, :]
+
+        output_1 = input[:, 0:1, :] - flow[:, 0:1, :] * 2 
+        output_2 = input[:, 1:2, :] - flow[:, 0:1, :] 
+
+        x = mask * output_1 + (1.0 - mask) * output_2
+
+        # (b, 1, 68)
+        return x
+
