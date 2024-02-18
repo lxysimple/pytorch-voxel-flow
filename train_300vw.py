@@ -352,41 +352,94 @@ def validate(val_loader, model, optimizer, criterion):
             # compute output
             output = model(input_var)
 
+
+
+
             # from IPython import embed
             # embed()
             # index = 2
 
-# img1 = input[index][:3]
-# img2 = input[index][3:]
-# img3 = target[index]
-# img_res = output[index].cpu().detach()
+            img1 = input[index][0]
+            img2 = input[index][1]
+            img3 = target[index]
+            img_res = output[index].cpu().detach()
+            img4 = np.abs(img_res - img3)
 
-# img1 = img1[[2, 1, 0], :, :]
-# img2 = img2[[2, 1, 0], :, :]
-# img3 = img3[[2, 1, 0], :, :]
-# img_res = img_res[[2, 1, 0], :, :]
 
-# # from IPython import embed
-# # embed()
-# img4 = np.abs(img_res - img3)
+            # 将列表重新组织成两列的形式
+            num_pairs = len(img1) // 2
+            pairs = []
+            for i in range(num_pairs):
+                pairs.append([img1[2*i], img1[2*i+1]]) 
+            numpy_array = np.array(pairs)
+            # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
+            image = np.zeros((256, 256, 1), dtype=np.uint8)
+            from show_edge_api import preprocess
+            preprocess(image, np.array([numpy_array]), 'img1.png') 
 
-# # 创建一个转换，将张量转换为 PIL.Image 对象
-# transform = transforms.ToPILImage()
+            pairs = []
+            for i in range(num_pairs):
+                pairs.append([img2[2*i], img2[2*i+1]]) 
+            numpy_array = np.array(pairs)
+            # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
+            image = np.zeros((256, 256, 1), dtype=np.uint8)
+            from show_edge_api import preprocess
+            preprocess(image, np.array([numpy_array]), 'img2.png') 
 
-# # 将张量转换为 PIL.Image 对象
-# img_res = transform(img_res)
-# img3 = transform(img3)
-# img2 = transform(img2)
-# img1 = transform(img1)
+            pairs = []
+            for i in range(num_pairs):
+                pairs.append([img3[2*i], img3[2*i+1]]) 
+            numpy_array = np.array(pairs)
+            # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
+            image = np.zeros((256, 256, 1), dtype=np.uint8)
+            from show_edge_api import preprocess
+            preprocess(image, np.array([numpy_array]), 'img3.png') 
 
-# img4 = transform(img4)
+            pairs = []
+            for i in range(num_pairs):
+                pairs.append([img_res[2*i], img_res[2*i+1]]) 
+            numpy_array = np.array(pairs)
+            # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
+            image = np.zeros((256, 256, 1), dtype=np.uint8)
+            from show_edge_api import preprocess
+            preprocess(image, np.array([numpy_array]), 'img_res.png') 
 
-# # 可选：保存图像到文件
-# img_res.save("img_res.png")
-# img3.save("img3.png")
-# img2.save("img2.png")
-# img1.save("img1.png")
-# img4.save("img4.png")
+            pairs = []
+            for i in range(num_pairs):
+                pairs.append([img4[2*i], img4[2*i+1]]) 
+            numpy_array = np.array(pairs)
+            # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
+            image = np.zeros((256, 256, 1), dtype=np.uint8)
+            from show_edge_api import preprocess
+            preprocess(image, np.array([numpy_array]), 'img4.png') 
+
+
+            # img1 = img1[[2, 1, 0], :, :]
+            # img2 = img2[[2, 1, 0], :, :]
+            # img3 = img3[[2, 1, 0], :, :]
+            # img_res = img_res[[2, 1, 0], :, :]
+
+            # from IPython import embed
+            # embed()
+            # img4 = np.abs(img_res - img3)
+
+            # 创建一个转换，将张量转换为 PIL.Image 对象
+            transform = transforms.ToPILImage()
+
+            # 将张量转换为 PIL.Image 对象
+            img_res = transform(img_res)
+            img3 = transform(img3)
+            img2 = transform(img2)
+            img1 = transform(img1)
+
+            img4 = transform(img4)
+
+            # 可选：保存图像到文件
+            img_res.save("img_res.png")
+            img3.save("img3.png")
+            img2.save("img2.png")
+            img1.save("img1.png")
+            img4.save("img4.png")
             
             # # 等待用户输入
             # builtins.input("Press Enter to continue...")

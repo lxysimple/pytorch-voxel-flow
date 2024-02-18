@@ -146,6 +146,8 @@ class UCF101(Dataset):
             images[0] = torch.unsqueeze(images[0], 0)
             images[1] = torch.unsqueeze(images[1], 0)
             images[2] = torch.unsqueeze(images[2], 0)
+
+            # (2, 68*2), (1, 68*2)
             return torch.cat([images[0], images[1]], dim=0), images[2]
         else:
             raise ValueError('Unknown syn_type ' + self.syn_type)
