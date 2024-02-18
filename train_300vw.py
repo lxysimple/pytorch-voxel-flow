@@ -35,8 +35,8 @@ import builtins
 
 import segmentation_models_pytorch as smp
 
-best_PSNR = 0
-
+# best_PSNR = 0
+best_vali_loss = 0
 
 def parse_args():
     """ 
@@ -65,6 +65,7 @@ def parse_args():
 
 
 def main():
+    # global cfg, best_PSNR
     global cfg, best_PSNR
     args = parse_args()
 
@@ -156,7 +157,8 @@ def main():
 
             print("epoch: ",checkpoint['epoch'])
             print("arch: ",checkpoint['arch'])
-            print("best_PSNR: ",checkpoint['best_PSNR'])
+            # print("best_PSNR: ",checkpoint['best_PSNR'])
+            print('best_vali_loss: ', best_vali_loss)
         else:
             print(("=> no checkpoint found at '{}'".format(checkpoint_path)))
  
@@ -188,8 +190,11 @@ def main():
             # PSNR, vali_loss = validate(val_loader, model, optimizer, criterion, evaluator)
             vali_loss = validate(val_loader, model, optimizer, criterion)
             # remember best PSNR and save checkpoint
-            is_best = PSNR > best_PSNR
-            best_PSNR = max(PSNR, best_PSNR)
+            # is_best = PSNR > best_PSNR
+            # best_PSNR = max(PSNR, best_PSNR)
+
+            is_best = vali_loss > best_vali_loss
+            best_vali_loss = max(vali_loss, best_vali_loss)
             save_checkpoint({
                 'vali_loss': vali_loss,
                 # 'PSNR': PSNR,
@@ -200,7 +205,7 @@ def main():
                 'arch': dict(cfg),
                 'state_dict': model.module.state_dict(),
                 'grad_dict': optimizer.state_dict(),
-                'best_PSNR': best_PSNR,
+                # 'best_PSNR': best_PSNR,
             }, is_best)
 
 
