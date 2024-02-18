@@ -489,7 +489,8 @@ def validate(val_loader, model, optimizer, criterion):
             batch_time.update(time.time() - end)
             end = time.time()
 
-            if (i + 1) % cfg.logging.print_freq == 0:
+            # if (i + 1) % cfg.logging.print_freq == 0:
+            if (i + 1) % 21 == 0:
 
                 print(('Test: [{0}/{1}]\t'
                        'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
