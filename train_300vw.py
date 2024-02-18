@@ -367,8 +367,8 @@ def validate(val_loader, model, optimizer, criterion):
 
 
 
-            # from IPython import embed
-            # embed()
+            from IPython import embed
+            embed()
 
             index = 2
 
