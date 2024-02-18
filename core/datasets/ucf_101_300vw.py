@@ -57,16 +57,8 @@ class UCF101(Dataset):
         else:
             print("未找到花括号内的数据")
 
-        keypoints_vector = []
-        for i in range(len(keypoints)):
-            if i%2 == 0:
-                keypoints_vector.append(keypoints[i])
-                
-        for i in range(len(keypoints)):
-            if i%2 == 1:
-                keypoints_vector.append(keypoints[i])
 
-        return keypoints_vector
+        return keypoints
     
 
     def __getitem__(self, idx):
