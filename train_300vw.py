@@ -376,14 +376,14 @@ def validate(val_loader, model, optimizer, criterion):
             img2 = input[index][1] * 255 + 40
             img3 = target[index][0] * 255 + 40
             img_res = output[index][0].cpu().detach() * 255 + 40
-            img4 = np.abs(img_res - img3)
+            # img4 = np.abs(img_res - img3)
 
             # print(img1)
 
             img1 = img1.int()
             img2 = img2.int()
             img3 = img3.int()
-            img4 = img4.int()
+            # img4 = img4.int()
             img_res = img_res.int()
 
 
@@ -424,14 +424,11 @@ def validate(val_loader, model, optimizer, criterion):
             from show_face_api import preprocess
             preprocess(image, np.array([numpy_array]), 'img_res.png') 
 
-            pairs = []
-            for i in range(68):
-                pairs.append([img4[2*i], img4[2*i+1]]) 
-            numpy_array = np.array(pairs)
-            # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
-            image = np.zeros((256, 256, 1), dtype=np.uint8)
-            from show_face_api import preprocess
-            preprocess(image, np.array([numpy_array]), 'img4.png') 
+            # 读取两张图像
+            img3 = cv2.imread('img3.png')
+            img_res = cv2.imread('img_res.png') 
+            img4 = np.abs(img3-img_res)
+            img4.save("img4.png")
 
 
             # img1 = img1[[2, 1, 0], :, :]
