@@ -304,8 +304,8 @@ def min_max_normalization_1d(x: torch.Tensor) -> torch.Tensor:
 
     for j in range(68*2):
         if j%2 == 0:
-            x[j] = x[j]/w
+            x[j] = (x[j]-x_left)/w
         else:
-            x[j] = x[j]/h
+            x[j] = (x[j]-y_low)/h
 
     return x
