@@ -67,7 +67,7 @@ def parse_args():
 
 def main():
     # global cfg, best_PSNR
-    global cfg, best_PSNR
+    global cfg, best_vali_loss
     args = parse_args()
 
     # 定义配置类对象
