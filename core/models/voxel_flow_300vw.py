@@ -82,12 +82,21 @@ class VoxelFlow(nn.Module):
         self.conv4 = nn.Conv1d(64, 2, kernel_size=5, stride=1, padding=2)
 
 
+        # for m in self.modules():
+        #     if isinstance(m, nn.Conv2d):
+        #         m.weight.data.normal_(0, 0.01)
+        #         if m.bias is not None:
+        #             m.bias.data.zero_()
+        #     elif isinstance(m, BatchNorm2d):
+        #         m.weight.data.fill_(1)
+        #         m.bias.data.zero_()
+
         for m in self.modules():
-            if isinstance(m, nn.Conv2d):
+            if isinstance(m, nn.Conv1d):
                 m.weight.data.normal_(0, 0.01)
                 if m.bias is not None:
                     m.bias.data.zero_()
-            elif isinstance(m, BatchNorm2d):
+            elif isinstance(m, BatchNorm1d):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
 
