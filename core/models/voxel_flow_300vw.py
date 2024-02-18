@@ -265,8 +265,8 @@ class VoxelFlow(nn.Module):
         # print('flow.shape： ', flow.shape)
 
         if self.syn_type == 'extra':
-            coor_x_1 = grid_x - flow * 2
-            coor_x_2 = grid_x - flow 
+            coor_x_1 = grid_x - flow[:, 0, :] * 2
+            coor_x_2 = grid_x - flow[:, 0, :] 
 
         else:
             raise ValueError('Unknown syn_type ' + self.syn_type)
