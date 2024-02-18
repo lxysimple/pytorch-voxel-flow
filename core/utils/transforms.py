@@ -293,4 +293,4 @@ def min_max_normalization_1d(x: torch.Tensor) -> torch.Tensor:
     # 对张量进行归一化操作
     x = (x - min_) / (max_ - min_ + 1e-9)
 
-    return x.reshape(shape)
+    return x
