@@ -132,11 +132,19 @@ class UCF101(Dataset):
 
 
 
-        # print('self.config', self.config)
-        if self.config.syn_type == 'inter':
-            return torch.cat([images[0], images[self.config.step - 1]], dim=0), torch.cat(images[1:self.config.step - 1], dim=0)
+        # # print('self.config', self.config)
+        # if self.config.syn_type == 'inter':
+        #     return torch.cat([images[0], images[self.config.step - 1]], dim=0), torch.cat(images[1:self.config.step - 1], dim=0)
 
-        elif self.config.syn_type == 'extra':
+        # elif self.config.syn_type == 'extra':
+        #     return torch.cat([images[0], images[1]], dim=0), torch.cat(images[2:self.config.step], 0)
+        # else:
+        #     raise ValueError('Unknown syn_type ' + self.syn_type)
+            
+
+        if self.config.syn_type == 'extra':
+            images[0] = torch.unsqueeze(images[0], 0)
+            images[1] = torch.unsqueeze(images[1], 0)
             return torch.cat([images[0], images[1]], dim=0), torch.cat(images[2:self.config.step], 0)
         else:
             raise ValueError('Unknown syn_type ' + self.syn_type)
