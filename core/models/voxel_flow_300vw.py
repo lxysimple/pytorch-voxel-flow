@@ -235,7 +235,7 @@ class VoxelFlow(nn.Module):
         #         grid_y.repeat([input.size()[0], 1, 1])).cuda()
         # grid_x, grid_y = meshgrid(input_size[0], input_size[1])
 
-        grid_x = meshgrid(input_size)
+        # grid_x = meshgrid(input_size)
 
         # with torch.cuda.device(input.get_device()):
         #     grid_x = torch.autograd.Variable(
@@ -243,9 +243,9 @@ class VoxelFlow(nn.Module):
         #     grid_y = torch.autograd.Variable(
         #         grid_y.repeat([input.size()[0], 1, 1])).cuda()
 
-        with torch.cuda.device(input.get_device()):
-            grid_x = torch.autograd.Variable(
-                grid_x.repeat([input.size()[0], 1])).cuda()
+        # with torch.cuda.device(input.get_device()):
+        #     grid_x = torch.autograd.Variable(
+        #         grid_x.repeat([input.size()[0], 1])).cuda()
             
         # flow = 0.5 * flow
         # flow =  flow # 正方向默认是减去光流值表示像素移动
@@ -264,13 +264,17 @@ class VoxelFlow(nn.Module):
         # print('grid_x.shape： ', grid_x.shape)
         # print('flow.shape： ', flow.shape)
 
-        if self.syn_type == 'extra':
-            coor_x_1 = grid_x - flow[:, 0, :] * 2
-            coor_x_2 = grid_x - flow[:, 0, :] 
+        # if self.syn_type == 'extra':
+        #     coor_x_1 = grid_x - flow[:, 0, :] * 2
+        #     coor_x_2 = grid_x - flow[:, 0, :] 
 
-        else:
-            raise ValueError('Unknown syn_type ' + self.syn_type)
+        # else:
+        #     raise ValueError('Unknown syn_type ' + self.syn_type)
 
+        """
+        简单来说，grid_sample提供一个input以及一个网格，然后根据grid中每个位置提供的坐标信息
+        (input中pixel的坐标)，将input中对应位置的像素值填充到grid指定的位置，得到最终的输出
+        """
         # # 将光流产生的变化应用到第1个图
         # output_1 = torch.nn.functional.grid_sample(
         #     input[:, 0:3, :, :],
@@ -283,21 +287,12 @@ class VoxelFlow(nn.Module):
         #     torch.stack([coor_x_2, coor_y_2], dim=3),
         #     padding_mode='border')
         
-        """
-        简单来说，grid_sample提供一个input以及一个网格，然后根据grid中每个位置提供的坐标信息
-        (input中pixel的坐标)，将input中对应位置的像素值填充到grid指定的位置，得到最终的输出
-        """
-        # 将光流产生的变化应用到第1个图
-        output_1 = torch.nn.functional.grid_sample(
-            input[:, 0, :],
-            torch.stack([coor_x_2], dim=2),
-            padding_mode='border')
+        
 
-        # 将光流产生的变化应用到第2个图
-        output_2 = torch.nn.functional.grid_sample(
-            input[:, 1, :],
-            torch.stack([coor_x_2], dim=2),
-            padding_mode='border')
+        
+        output_1 = input[:, 0：1, :] - flow[:, 0：1, :] * 2 
+        output_2 = input[:, 1：2, :] - flow[:, 0：1, :] 
+
 
         # 将 mask 中的像素值从原来的 [0, 1] 区间缩放到 [0.5, 1.0] 区间
         # 使其更好地融合背景
