@@ -24,7 +24,7 @@ def show(image, keypoints, save_path):
     """
     pose_local_visualizer = PoseLocalVisualizer(
                                 # line_width = 3,
-                                radius=3, 
+                                radius=2, 
                                 # kpt_color = 'yellow',
                                 # link_color = 'yellow'
                                 kpt_color = 'white',
