@@ -518,7 +518,7 @@ def validate(val_loader, model, optimizer, criterion):
 def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
 
     # filename = f"{int(state['epoch'])}_tloss{float(state['train_loss'].avg):.3f}_vloss{float(state['vali_loss'].avg):.3f}_PSNR{float(state['PSNR']):.3f}.pth.tar"
-    filename = f"{int(state['epoch'])}_tloss{float(state['train_loss'].avg):.3f}_vloss{float(state['vali_loss'].avg):.3f}.pth.tar"
+    filename = f"{int(state['epoch'])}_tloss{float(state['train_loss'].avg):.6f}_vloss{float(state['vali_loss'].avg):.6f}.pth.tar"
     if not cfg.output_dir:
         return
     if not os.path.exists(cfg.output_dir):
