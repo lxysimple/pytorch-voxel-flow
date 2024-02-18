@@ -28,7 +28,7 @@ def show(image, keypoints, save_path):
                                 # kpt_color = 'yellow',
                                 # link_color = 'yellow'
                                 kpt_color = 'white',
-                                link_color = 'white'
+                                # link_color = 'white'
                             )
 
     # PoseDataSample存的是所有目标关键点信息
@@ -75,7 +75,7 @@ def show(image, keypoints, save_path):
                     
     }
 
-    pose_local_visualizer.set_dataset_meta(dataset_meta)
+    # pose_local_visualizer.set_dataset_meta(dataset_meta)
     
     gt_pose_data_sample.gt_instances = gt_instances 
     
