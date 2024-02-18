@@ -138,12 +138,20 @@ class VoxelFlow(nn.Module):
         bn = []
 
         for m in module.modules():
-            if isinstance(m, nn.Conv2d):
+            # if isinstance(m, nn.Conv2d):
+            #     ps = list(m.parameters())
+            #     weight.append(ps[0])
+            #     if len(ps) == 2:
+            #         bias.append(ps[1])
+            # elif isinstance(m, nn.BatchNorm2d):
+            #     bn.extend(list(m.parameters()))
+            
+            if isinstance(m, nn.Conv1d):
                 ps = list(m.parameters())
                 weight.append(ps[0])
                 if len(ps) == 2:
                     bias.append(ps[1])
-            elif isinstance(m, nn.BatchNorm2d):
+            elif isinstance(m, nn.BatchNorm1d):
                 bn.extend(list(m.parameters()))
 
         return [
