@@ -299,7 +299,7 @@ def min_max_normalization_1d(x: torch.Tensor) -> torch.Tensor:
     max_ = x.max(dim=-1, keepdim=True)
 
     # 如果最小值的平均值为0，最大值的平均值为1，说明已经是归一化状态，直接返回
-    if min_.mean() == 0 and max_.mean() == 1:
+    if min_ == 0 and max_ == 1:
         return x.reshape(shape)
 
     # 进行最小-最大归一化处理
