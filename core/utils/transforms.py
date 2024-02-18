@@ -312,5 +312,7 @@ def min_max_normalization_1d(x: torch.Tensor) -> torch.Tensor:
         
         if(x[j]>1):
             print('x[j]>1')
+            print(x_left, x_right, y_low, y_high, side)
+            print(x[j])
 
     return x
