@@ -256,7 +256,7 @@ class VoxelFlow(nn.Module):
         #     grid_x = torch.autograd.Variable(
         #         grid_x.repeat([input.size()[0], 1])).cuda()
             
-        # flow = 0.5 * flow
+        flow = 0.5 * flow
         # flow =  flow # 正方向默认是减去光流值表示像素移动
 
         # if self.syn_type == 'inter':
