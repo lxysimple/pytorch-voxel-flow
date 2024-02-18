@@ -99,7 +99,7 @@ def main():
     print("model: ",model)
     print("ds_train: ",ds_train)
     print("ds_val: ",ds_val)
-    print("train data1 len: ",len(ds_train[0][0]))
+    print("train data frame1 len: ",len(ds_train[0][0]))
 
     cfg.train.input_mean = model.input_mean
     cfg.train.input_std = model.input_std
