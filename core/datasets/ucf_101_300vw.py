@@ -61,7 +61,8 @@ class UCF101(Dataset):
         for i in range(len(keypoints)):
             if i%2 == 0:
                 keypoints_vector.append(keypoints[i])
-        for i in keypoints:
+                
+        for i in range(len(keypoints)):
             if i%2 == 1:
                 keypoints_vector.append(keypoints[i])
 
