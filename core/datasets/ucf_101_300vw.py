@@ -97,7 +97,7 @@ class UCF101(Dataset):
             #             )
             #       ).astype(np.float32)
             
-            img = _keypoint_from_pts_( 
+            img = self._keypoint_from_pts_( 
                 os.path.join(
                             video_dir,'{0:06d}.pts'.format(frame_idx + i)
                         )
