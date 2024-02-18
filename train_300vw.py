@@ -171,7 +171,7 @@ def main():
 
 
     # evaluator = EvalPSNR(255.0 / np.mean(cfg.test.input_std))
-    evaluator = EvalPSNR(255.0)
+    # evaluator = EvalPSNR(255.0)
 
 
     # PSNR = validate(val_loader, model, optimizer, criterion, evaluator)
@@ -185,13 +185,14 @@ def main():
         # evaluate on validation set
         if ((epoch + 1) % cfg.logging.eval_freq == 0
                 or epoch == cfg.train.optimizer.args.max_epoch - 1):
-            PSNR, vali_loss = validate(val_loader, model, optimizer, criterion, evaluator)
+            # PSNR, vali_loss = validate(val_loader, model, optimizer, criterion, evaluator)
+            vali_loss = validate(val_loader, model, optimizer, criterion)
             # remember best PSNR and save checkpoint
             is_best = PSNR > best_PSNR
             best_PSNR = max(PSNR, best_PSNR)
             save_checkpoint({
                 'vali_loss': vali_loss,
-                'PSNR': PSNR,
+                # 'PSNR': PSNR,
                 'train_loss': train_loss,
 
 
@@ -322,11 +323,12 @@ def flip(x, dim):
     return x.view(xsize)
 
 
-def validate(val_loader, model, optimizer, criterion, evaluator):
+# def validate(val_loader, model, optimizer, criterion, evaluator):
+def validate(val_loader, model, optimizer, criterion):
     with torch.no_grad():
         batch_time = AverageMeter()
         losses = AverageMeter()
-        evaluator.clear()
+        # evaluator.clear()
 
         # switch to evaluate mode
         model.eval()
@@ -343,9 +345,9 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             # compute output
             output = model(input_var)
 
-            from IPython import embed
-            embed()
-            index = 2
+            # from IPython import embed
+            # embed()
+            # index = 2
 
 # img1 = input[index][:3]
 # img2 = input[index][3:]
@@ -378,6 +380,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
 # img2.save("img2.png")
 # img1.save("img1.png")
 # img4.save("img4.png")
+            
             # # 等待用户输入
             # builtins.input("Press Enter to continue...")
 
@@ -386,7 +389,7 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
             # measure accuracy and record loss
 
             pred = output.data.cpu().numpy()
-            evaluator(pred, target.cpu().numpy())
+            # evaluator(pred, target.cpu().numpy())
             losses.update(loss.item(), input.size(0))
 
             # measure elapsed time
@@ -403,20 +406,25 @@ def validate(val_loader, model, optimizer, criterion, evaluator):
                            len(val_loader),
                            batch_time=batch_time,
                            loss=losses,
-                           PSNR=evaluator.PSNR())))
+                        #    PSNR=evaluator.PSNR())))
+                            )))
 
+        # print('Testing Results: '
+        #       'PSNR {PSNR:.3f} ({bestPSNR:.4f})\tLoss {loss.avg:.5f}'.format(
+        #           PSNR=evaluator.PSNR(),
+        #           bestPSNR=max(evaluator.PSNR(), best_PSNR),
+        #           loss=losses))
+        
         print('Testing Results: '
-              'PSNR {PSNR:.3f} ({bestPSNR:.4f})\tLoss {loss.avg:.5f}'.format(
-                  PSNR=evaluator.PSNR(),
-                  bestPSNR=max(evaluator.PSNR(), best_PSNR),
-                  loss=losses))
+              'Loss {loss.avg:.5f}'.format(loss=losses))
 
-        return evaluator.PSNR(), losses
+        # return evaluator.PSNR(), losses
+        return losses
 
 def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
 
-    filename = f"{int(state['epoch'])}_tloss{float(state['train_loss'].avg):.3f}_vloss{float(state['vali_loss'].avg):.3f}_PSNR{float(state['PSNR']):.3f}.pth.tar"
-    
+    # filename = f"{int(state['epoch'])}_tloss{float(state['train_loss'].avg):.3f}_vloss{float(state['vali_loss'].avg):.3f}_PSNR{float(state['PSNR']):.3f}.pth.tar"
+    filename = f"{int(state['epoch'])}_tloss{float(state['train_loss'].avg):.3f}_vloss{float(state['vali_loss'].avg):.3f}.pth.tar"
     if not cfg.output_dir:
         return
     if not os.path.exists(cfg.output_dir):
