@@ -423,26 +423,26 @@ def validate(val_loader, model, optimizer, criterion):
             # embed()
             # img4 = np.abs(img_res - img3)
 
-            # 创建一个转换，将张量转换为 PIL.Image 对象
-            transform = transforms.ToPILImage()
+            # # 创建一个转换，将张量转换为 PIL.Image 对象
+            # transform = transforms.ToPILImage()
 
-            # 将张量转换为 PIL.Image 对象
-            img_res = transform(img_res)
-            img3 = transform(img3)
-            img2 = transform(img2)
-            img1 = transform(img1)
+            # # 将张量转换为 PIL.Image 对象
+            # img_res = transform(img_res)
+            # img3 = transform(img3)
+            # img2 = transform(img2)
+            # img1 = transform(img1)
 
-            img4 = transform(img4)
+            # img4 = transform(img4)
 
-            # 可选：保存图像到文件
-            img_res.save("img_res.png")
-            img3.save("img3.png")
-            img2.save("img2.png")
-            img1.save("img1.png")
-            img4.save("img4.png")
+            # # 可选：保存图像到文件
+            # img_res.save("img_res.png")
+            # img3.save("img3.png")
+            # img2.save("img2.png")
+            # img1.save("img1.png")
+            # img4.save("img4.png")
             
-            # # 等待用户输入
-            # builtins.input("Press Enter to continue...")
+            # 等待用户输入
+            builtins.input("Press Enter to continue...")
 
             loss = criterion(output, target_var)
 
