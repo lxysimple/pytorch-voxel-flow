@@ -355,6 +355,18 @@ def validate(val_loader, model, optimizer, criterion):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             # from IPython import embed
             # embed()
             # index = 2
@@ -443,6 +455,17 @@ def validate(val_loader, model, optimizer, criterion):
             
             # 等待用户输入
             builtins.input("Press Enter to continue...")
+
+
+
+
+
+
+
+
+
+
+
 
             loss = criterion(output, target_var)
 
