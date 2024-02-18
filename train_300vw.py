@@ -425,6 +425,7 @@ def validate(val_loader, model, optimizer, criterion):
             preprocess(image, np.array([numpy_array]), 'img_res.png') 
 
             # 读取两张图像
+            import cv2
             img3 = cv2.imread('img3.png')
             img_res = cv2.imread('img_res.png') 
             img4 = np.abs(img3-img_res)
