@@ -378,6 +378,12 @@ def validate(val_loader, model, optimizer, criterion):
             img_res = output[index][0].cpu().detach()*255
             img4 = np.abs(img_res - img3)
 
+            img1 = int(img1)
+            img2 = int(img2)
+            img3 = int(img3)
+            img4 = int(img4)
+            img_res = int(img_res)
+
 
             # 将列表重新组织成两列的形式
             pairs = []
