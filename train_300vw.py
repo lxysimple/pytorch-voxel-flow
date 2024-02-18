@@ -369,7 +369,8 @@ def validate(val_loader, model, optimizer, criterion):
 
             # from IPython import embed
             # embed()
-            # index = 2
+            
+            index = 2
 
             img1 = input[index][0]
             img2 = input[index][1]
