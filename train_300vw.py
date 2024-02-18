@@ -183,7 +183,7 @@ def main():
     for epoch in range(cfg.train.optimizer.args.max_epoch):
 
         # train for one epoch
-        # train_loss = train(train_loader, model, optimizer, criterion, epoch)
+        train_loss = train(train_loader, model, optimizer, criterion, epoch)
 #
         # evaluate on validation set
         if ((epoch + 1) % cfg.logging.eval_freq == 0
@@ -464,7 +464,7 @@ def validate(val_loader, model, optimizer, criterion):
             # img4.save("img4.png")
             
             # 等待用户输入
-            builtins.input("Press Enter to continue...")
+            # builtins.input("Press Enter to continue...")
 
 
 
