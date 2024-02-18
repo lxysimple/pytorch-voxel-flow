@@ -302,10 +302,10 @@ def min_max_normalization_1d(x: torch.Tensor) -> torch.Tensor:
     w = x_right - x_left 
     h = y_high - y_low 
 
-    min_ = torch.min(x)
-    max_ = torch.max(x)
-
-    # 对张量进行归一化操作
-    x = (x - min_) / (max_ - min_ + 1e-9)
+    for j in range(68*2):
+        if j%2 == 0:
+            x[j] = x[j]/w
+        else:
+            x[j] = x[j]/h
 
     return x
