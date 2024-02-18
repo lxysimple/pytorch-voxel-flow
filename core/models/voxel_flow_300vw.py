@@ -283,16 +283,20 @@ class VoxelFlow(nn.Module):
         #     torch.stack([coor_x_2, coor_y_2], dim=3),
         #     padding_mode='border')
         
+        """
+        简单来说，grid_sample提供一个input以及一个网格，然后根据grid中每个位置提供的坐标信息
+        (input中pixel的坐标)，将input中对应位置的像素值填充到grid指定的位置，得到最终的输出
+        """
         # 将光流产生的变化应用到第1个图
         output_1 = torch.nn.functional.grid_sample(
             input[:, 0, :],
-            coor_x_2,
+            torch.stack([coor_x_2], dim=2),
             padding_mode='border')
 
         # 将光流产生的变化应用到第2个图
         output_2 = torch.nn.functional.grid_sample(
             input[:, 1, :],
-            coor_x_2,
+            torch.stack([coor_x_2], dim=2),
             padding_mode='border')
 
         # 将 mask 中的像素值从原来的 [0, 1] 区间缩放到 [0.5, 1.0] 区间
