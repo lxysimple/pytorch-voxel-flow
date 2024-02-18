@@ -302,10 +302,12 @@ def min_max_normalization_1d(x: torch.Tensor) -> torch.Tensor:
     w = x_right - x_left 
     h = y_high - y_low 
 
+    side = float(max(w,h)) + 40
+
     for j in range(68*2):
         if j%2 == 0:
-            x[j] = (x[j]-x_left)/w
+            x[j] = (x[j]-x_left)/side
         else:
-            x[j] = (x[j]-y_low)/h
+            x[j] = (x[j]-y_low)/side
 
     return x
