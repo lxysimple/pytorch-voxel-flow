@@ -302,4 +302,5 @@ class VoxelFlow(nn.Module):
         x = mask * output_1 + (1.0 - mask) * output_2
         # x = output_2
 
+        # (b, 1, 68)
         return x
