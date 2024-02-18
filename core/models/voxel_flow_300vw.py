@@ -152,7 +152,7 @@ class VoxelFlow(nn.Module):
     def forward(self, x, syn_type='inter'):
         input = x
         # input_size = tuple(x.size()[2:4])
-        input_size = x.size()[2:3] 
+        input_size = x.size()[2]
 
         # out =(input +2*padding -kernel)/stride + 1 
         # (136+2*0-1)/1 + 1 = 68
