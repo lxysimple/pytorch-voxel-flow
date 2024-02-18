@@ -372,10 +372,10 @@ def validate(val_loader, model, optimizer, criterion):
 
             index = 2
 
-            img1 = input[index][0]*255
-            img2 = input[index][1]*255
-            img3 = target[index][0]*255
-            img_res = output[index][0].cpu().detach()*255
+            img1 = input[index][0]
+            img2 = input[index][1]
+            img3 = target[index][0]
+            img_res = output[index][0].cpu().detach()
             img4 = np.abs(img_res - img3)
 
             img1 = img1.int()
