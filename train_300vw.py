@@ -369,7 +369,7 @@ def validate(val_loader, model, optimizer, criterion):
 
             # from IPython import embed
             # embed()
-            
+
             index = 2
 
             img1 = input[index][0]
@@ -387,7 +387,7 @@ def validate(val_loader, model, optimizer, criterion):
             numpy_array = np.array(pairs)
             # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
             image = np.zeros((256, 256, 1), dtype=np.uint8)
-            from show_edge_api import preprocess
+            from show_face_api import preprocess
             preprocess(image, np.array([numpy_array]), 'img1.png') 
 
             pairs = []
@@ -396,7 +396,7 @@ def validate(val_loader, model, optimizer, criterion):
             numpy_array = np.array(pairs)
             # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
             image = np.zeros((256, 256, 1), dtype=np.uint8)
-            from show_edge_api import preprocess
+            from show_face_api import preprocess
             preprocess(image, np.array([numpy_array]), 'img2.png') 
 
             pairs = []
@@ -405,7 +405,7 @@ def validate(val_loader, model, optimizer, criterion):
             numpy_array = np.array(pairs)
             # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
             image = np.zeros((256, 256, 1), dtype=np.uint8)
-            from show_edge_api import preprocess
+            from show_face_api import preprocess
             preprocess(image, np.array([numpy_array]), 'img3.png') 
 
             pairs = []
@@ -414,7 +414,7 @@ def validate(val_loader, model, optimizer, criterion):
             numpy_array = np.array(pairs)
             # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
             image = np.zeros((256, 256, 1), dtype=np.uint8)
-            from show_edge_api import preprocess
+            from show_face_api import preprocess
             preprocess(image, np.array([numpy_array]), 'img_res.png') 
 
             pairs = []
@@ -423,7 +423,7 @@ def validate(val_loader, model, optimizer, criterion):
             numpy_array = np.array(pairs)
             # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
             image = np.zeros((256, 256, 1), dtype=np.uint8)
-            from show_edge_api import preprocess
+            from show_face_api import preprocess
             preprocess(image, np.array([numpy_array]), 'img4.png') 
 
 
