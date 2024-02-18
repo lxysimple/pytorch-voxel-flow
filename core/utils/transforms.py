@@ -287,6 +287,21 @@ def min_max_normalization_1d(x: torch.Tensor) -> torch.Tensor:
     返回:
     tc.Tensor: 归一化后的张量，保持原始形状
     """
+    keypoints_x = []
+    keypoints_y = []
+    for j in range(68*2):
+        if j%2 == 0:
+            keypoints_x.append(keypoints[j])
+        else:
+            keypoints_y.append(keypoints[j])
+                    
+    x_left = min(keypoints_x)  
+    x_right = max(keypoints_x) 
+    y_low = min(keypoints_y) 
+    y_high = max(keypoints_y) 
+    w = x_right - x_left 
+    h = y_high - y_low 
+
     min_ = torch.min(x)
     max_ = torch.max(x)
 
