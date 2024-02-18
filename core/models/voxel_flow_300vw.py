@@ -245,7 +245,7 @@ class VoxelFlow(nn.Module):
 
         with torch.cuda.device(input.get_device()):
             grid_x = torch.autograd.Variable(
-                grid_x.repeat([input.size()[0], 1])).cuda()
+                grid_x.repeat([input.shape[0], 1])).cuda()
             
         # flow = 0.5 * flow
         # flow =  flow # 正方向默认是减去光流值表示像素移动
@@ -261,7 +261,7 @@ class VoxelFlow(nn.Module):
         #     coor_x_2 = grid_x - flow[:, 0, :, :] 
         #     coor_y_2 = grid_y - flow[:, 1, :, :] 
 
-        print('grid_x.shape： ', grid_x.shape)
+        # print('grid_x.shape： ', grid_x.shape)
         if self.syn_type == 'extra':
             coor_x_1 = grid_x - flow[:, 0, :] * 2
             coor_x_2 = grid_x - flow[:, 0, :] 
