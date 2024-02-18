@@ -127,8 +127,9 @@ class UCF101Test(Dataset):
 
             # images[i] = tf.min_max_normalization(images[i])
 
-            images[i] = torch.from_numpy(np.array(images[i])).float()
             images[i] = tf.min_max_normalization_1d(images[i])
+            images[i] = torch.from_numpy(np.array(images[i])).float()
+            
 
 
 
