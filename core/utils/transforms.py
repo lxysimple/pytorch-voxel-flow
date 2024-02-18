@@ -309,5 +309,8 @@ def min_max_normalization_1d(x: torch.Tensor) -> torch.Tensor:
             x[j] = (x[j]-x_left)/side
         else:
             x[j] = (x[j]-y_low)/side
+        
+        if(x[j]>1):
+            print('x[j]>1')
 
     return x
