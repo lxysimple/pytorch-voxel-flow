@@ -175,7 +175,7 @@ class VoxelFlow(nn.Module):
             },
         ]
 
-    def forward2(self, x, syn_type='inter'):
+    def forward(self, x, syn_type='inter'):
         input = x
         # input_size = tuple(x.size()[2:4])
         input_size = x.size()[2]
@@ -331,7 +331,7 @@ class VoxelFlow(nn.Module):
         # (b, 1, 68)
         return x
 
-    def forward(self, x, syn_type='inter'):
+    def forward2(self, x, syn_type='inter'):
         input = x.clone() # (b, 2, 136)
 
         # 展平输入
