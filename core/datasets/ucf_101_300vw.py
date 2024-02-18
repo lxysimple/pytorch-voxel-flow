@@ -127,9 +127,9 @@ class UCF101(Dataset):
             # images[i] = torch.from_numpy(images[i]).permute(
             #     2, 0, 1).contiguous().float()
 
-            # images[i] = tf.min_max_normalization_1d(images[i])
+            images[i] = tf.min_max_normalization_1d(images[i])
             images[i] = torch.from_numpy(np.array(images[i])).float()
-            images[i] = tf.min_max_normalization(images[i])
+            # images[i] = tf.min_max_normalization(images[i])
             # print("images[i].shape: ", images[i].shape)
             
 
