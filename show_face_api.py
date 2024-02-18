@@ -23,7 +23,7 @@ def show(image, keypoints, save_path):
         bbox，是mumpy数组，[[30,30, 300, 300]]，shape=(1,4)
     """
     pose_local_visualizer = PoseLocalVisualizer(
-                                # line_width = 3,
+                                line_width = 1,
                                 radius=2, 
                                 # kpt_color = 'yellow',
                                 # link_color = 'yellow'
@@ -75,7 +75,7 @@ def show(image, keypoints, save_path):
                     
     }
 
-    # pose_local_visualizer.set_dataset_meta(dataset_meta)
+    pose_local_visualizer.set_dataset_meta(dataset_meta)
     
     gt_pose_data_sample.gt_instances = gt_instances 
     
