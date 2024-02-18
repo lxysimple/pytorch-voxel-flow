@@ -372,17 +372,16 @@ def validate(val_loader, model, optimizer, criterion):
 
             index = 2
 
-            img1 = input[index][0]
-            img2 = input[index][1]
-            img3 = target[index]
-            img_res = output[index].cpu().detach()
+            img1 = input[index][0]*255
+            img2 = input[index][1]*255
+            img3 = target[index][0]*255
+            img_res = output[index].cpu().detach()*255
             img4 = np.abs(img_res - img3)
 
 
             # 将列表重新组织成两列的形式
-            num_pairs = len(img1) // 2
             pairs = []
-            for i in range(num_pairs):
+            for i in range(68):
                 pairs.append([img1[2*i], img1[2*i+1]]) 
             numpy_array = np.array(pairs)
             # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
@@ -391,7 +390,7 @@ def validate(val_loader, model, optimizer, criterion):
             preprocess(image, np.array([numpy_array]), 'img1.png') 
 
             pairs = []
-            for i in range(num_pairs):
+            for i in range(68):
                 pairs.append([img2[2*i], img2[2*i+1]]) 
             numpy_array = np.array(pairs)
             # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
@@ -400,7 +399,7 @@ def validate(val_loader, model, optimizer, criterion):
             preprocess(image, np.array([numpy_array]), 'img2.png') 
 
             pairs = []
-            for i in range(num_pairs):
+            for i in range(68):
                 pairs.append([img3[2*i], img3[2*i+1]]) 
             numpy_array = np.array(pairs)
             # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
@@ -409,7 +408,7 @@ def validate(val_loader, model, optimizer, criterion):
             preprocess(image, np.array([numpy_array]), 'img3.png') 
 
             pairs = []
-            for i in range(num_pairs):
+            for i in range(68):
                 pairs.append([img_res[2*i], img_res[2*i+1]]) 
             numpy_array = np.array(pairs)
             # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
@@ -418,7 +417,7 @@ def validate(val_loader, model, optimizer, criterion):
             preprocess(image, np.array([numpy_array]), 'img_res.png') 
 
             pairs = []
-            for i in range(num_pairs):
+            for i in range(68):
                 pairs.append([img4[2*i], img4[2*i+1]]) 
             numpy_array = np.array(pairs)
             # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
