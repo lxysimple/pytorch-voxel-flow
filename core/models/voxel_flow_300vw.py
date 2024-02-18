@@ -182,8 +182,11 @@ class VoxelFlow(nn.Module):
         x = self.bottleneck_bn(x)
         x = self.relu(x)
  
+        # x = nn.functional.upsample( # ->(b, 256, 34)
+        #     x, scale_factor=2, mode='bilinear', align_corners=False)
         x = nn.functional.upsample( # ->(b, 256, 34)
-            x, scale_factor=2, mode='bilinear', align_corners=False)
+            x, scale_factor=2, mode='linear', align_corners=False)
+        
 
         # out=(input - 1)×stride+k-2p
         # (64-1)*1+3-2=64
@@ -192,8 +195,10 @@ class VoxelFlow(nn.Module):
         x = self.deconv1_bn(x)
         x = self.relu(x)
 
+        # x = nn.functional.upsample( # ->(b, 256, 68)
+        #     x, scale_factor=2, mode='bilinear', align_corners=False)
         x = nn.functional.upsample( # ->(b, 256, 68)
-            x, scale_factor=2, mode='bilinear', align_corners=False)
+            x, scale_factor=2, mode='linear', align_corners=False)
 
         x = torch.cat([x, conv2], dim=1) # ->(b, 384, 68)
         #(128-1)*1+5-2*2=128
@@ -201,8 +206,10 @@ class VoxelFlow(nn.Module):
         x = self.deconv2_bn(x)
         x = self.relu(x)
 
+        # x = nn.functional.upsample( # ->(b, 128, 136)
+        #     x, scale_factor=2, mode='bilinear', align_corners=False)
         x = nn.functional.upsample( # ->(b, 128, 136)
-            x, scale_factor=2, mode='bilinear', align_corners=False)
+            x, scale_factor=2, mode='linear', align_corners=False) 
 
         x = torch.cat([x, conv1], dim=1) # ->(b, 192, 136)
         x = self.deconv3(x) # ->(b, 64, 136)
