@@ -190,12 +190,13 @@ def main():
                 or epoch == cfg.train.optimizer.args.max_epoch - 1):
             # PSNR, vali_loss = validate(val_loader, model, optimizer, criterion, evaluator)
             vali_loss = validate(val_loader, model, optimizer, criterion)
+
             # remember best PSNR and save checkpoint
             # is_best = PSNR > best_PSNR
             # best_PSNR = max(PSNR, best_PSNR)
 
-            is_best = vali_loss > best_vali_loss
-            best_vali_loss = max(vali_loss, best_vali_loss)
+            is_best = vali_loss.avg > best_vali_loss
+            best_vali_loss = max(vali_loss.avg, best_vali_loss)
             save_checkpoint({
                 'vali_loss': vali_loss,
                 # 'PSNR': PSNR,
