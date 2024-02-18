@@ -335,9 +335,6 @@ class VoxelFlow(nn.Module):
         x = torch.relu(self.hidden_layer3(x))
         x = torch.relu(self.hidden_layer4(x))
 
-                
-        # 前向传播通过输出层
-        x = self.output_layer(x)
 
         # 重新形状成 (b, 2, 136)
         x = x.view(x.size(0), 2, -1)
