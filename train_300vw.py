@@ -493,7 +493,7 @@ def validate(val_loader, model, optimizer, criterion):
 
                 print(('Test: [{0}/{1}]\t'
                        'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                       'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                       'Loss {loss.val:.6f} ({loss.avg:.6f})\t'
                     #    'PSNR {PSNR:.3f}'.format(
                        .format(
                            i,
@@ -510,7 +510,7 @@ def validate(val_loader, model, optimizer, criterion):
         #           loss=losses))
         
         print('Testing Results: '
-              'Loss {loss.avg:.5f}'.format(loss=losses))
+              'Loss {loss.avg:.6f}'.format(loss=losses))
 
         # return evaluator.PSNR(), losses
         return losses
