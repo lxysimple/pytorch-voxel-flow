@@ -25,7 +25,7 @@
 import os
 
 # 定义目录路径
-directory = '/home/xyli/data/300VW_Dataset_2015_12_14''
+directory = '/home/xyli/data/300VW_Dataset_2015_12_14'
 output = 'trainlist_300vw_68.txt'
 
 # 获取目录中的一级子文件夹
