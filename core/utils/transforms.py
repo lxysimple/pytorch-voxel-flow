@@ -287,21 +287,10 @@ def min_max_normalization_1d(x: torch.Tensor) -> torch.Tensor:
     返回:
     tc.Tensor: 归一化后的张量，保持原始形状
     """
-    # 获取输入张量的形状
-    shape = x.shape
+    min_ = torch.min(x)
+    max_ = torch.max(x)
 
-    # 如果输入张量的维度大于2，将其展平成二维张量
-    if x.ndim > 2:
-        x = x.reshape(x.shape[0], -1)
-
-    # 计算每行的最小值和最大值
-    min_ = x.min(dim=-1, keepdim=True)
-    max_ = x.max(dim=-1, keepdim=True)
-
-    # 如果最小值的平均值为0，最大值的平均值为1，说明已经是归一化状态，直接返回
-    if min_ == 0 and max_ == 1:
-        return x.reshape(shape)
-
-    # 进行最小-最大归一化处理
+    # 对张量进行归一化操作
     x = (x - min_) / (max_ - min_ + 1e-9)
+
     return x.reshape(shape)
