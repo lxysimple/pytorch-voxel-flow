@@ -13,8 +13,8 @@ model = dict(
 
 device = [0, 1, 2, 3, 4, 5, 6, 7]
 
-# resume = 'voxelflow_90_tloss0.000023_vloss0.000028.pth.tar'
-resume = 'outputs/voxelflow_50_tloss0.000037_vloss0.000037.pth.tar'
+resume = 'voxelflow_90_tloss0.000023_vloss0.000028.pth.tar'
+# resume = 'outputs/voxelflow_50_tloss0.000037_vloss0.000037.pth.tar'
 
 # resume = ''
 weight = ''
