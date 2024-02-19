@@ -153,7 +153,11 @@ class VoxelFlow(nn.Module):
                     bias.append(ps[1])
             elif isinstance(m, nn.BatchNorm1d):
                 bn.extend(list(m.parameters()))
-
+            elif isinstance(m, nn.Linear):
+                ps = list(m.parameters())
+                weight.append(ps[0])
+                if len(ps) == 2:
+                    bias.append(ps[1])
         return [
             {
                 'params': weight,
@@ -175,7 +179,7 @@ class VoxelFlow(nn.Module):
             },
         ]
 
-    def forward(self, x, syn_type='inter'):
+    def forward1(self, x, syn_type='inter'):
         input = x
         # input_size = tuple(x.size()[2:4])
         input_size = x.size()[2]
@@ -331,7 +335,7 @@ class VoxelFlow(nn.Module):
         # (b, 1, 68)
         return x
 
-    def forward2(self, x, syn_type='inter'):
+    def forward(self, x, syn_type='inter'):
         input = x.clone() # (b, 2, 136)
 
         # 展平输入
