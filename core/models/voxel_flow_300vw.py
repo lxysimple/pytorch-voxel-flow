@@ -102,10 +102,14 @@ class VoxelFlow(nn.Module):
         
 
         # 定义隐藏层
-        self.hidden_layer1 = nn.Linear(68*2*2, 68)
-        self.hidden_layer2 = nn.Linear(68, 17)
-        self.hidden_layer3 = nn.Linear(17, 68)
-        self.hidden_layer4 = nn.Linear(68, 68*2*2)
+        self.hidden_layer1 = nn.Linear(68*2*2, 2*68)
+        self.hidden_layer2 = nn.Linear(68*2, 68)
+        self.hidden_layer3 = nn.Linear(68, 34)
+        self.hidden_layer4 = nn.Linear(34, 17)
+        self.hidden_layer5 = nn.Linear(17, 34)
+        self.hidden_layer6 = nn.Linear(34, 68)
+        self.hidden_layer7 = nn.Linear(68, 68*2)
+        self.hidden_layer8 = nn.Linear(68*2, 2*2*68)
 
 
 
@@ -347,6 +351,10 @@ class VoxelFlow(nn.Module):
         x = torch.relu(self.hidden_layer2(x))
         x = torch.relu(self.hidden_layer3(x))
         x = torch.relu(self.hidden_layer4(x))
+        x = torch.relu(self.hidden_layer5(x))
+        x = torch.relu(self.hidden_layer6(x))
+        x = torch.relu(self.hidden_layer7(x))
+        x = torch.relu(self.hidden_layer8(x))
 
 
         # 重新形状成 (b, 2, 136)
