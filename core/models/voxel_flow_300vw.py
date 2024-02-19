@@ -158,6 +158,7 @@ class VoxelFlow(nn.Module):
                 weight.append(ps[0])
                 if len(ps) == 2:
                     bias.append(ps[1])
+                    
         return [
             {
                 'params': weight,
