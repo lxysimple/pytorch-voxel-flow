@@ -14,9 +14,9 @@ model = dict(
 device = [0, 1, 2, 3, 4, 5, 6, 7]
 
 # resume = 'voxelflow_90_tloss0.000023_vloss0.000028.pth.tar'
-resume = 'outputs/voxelflow_30_tloss0.000022_vloss0.000042.pth.tar'
+# resume = 'outputs/voxelflow_30_tloss0.000022_vloss0.000042.pth.tar'
 
-# resume = ''
+resume = ''
 weight = ''
 dataset = 'UCF101'
 # dataset = 'ucf-101'
